@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.study.spring.dao.mybatis.IOrderInfoMapper">
+
+    <resultMap id="orders" type="OrderInfo" autoMapping="true">
+        <association property="goods" javaType="Goods">
+            <id property="id" column="goods_id"/>
+            <result property="description" column="description"/>
+            <result property="productName" column="product_name"/>
+            <result property="stockNum" column="stock_num"/>
+        </association>
+        <association property="user" javaType="User">
+            <id property="id" column="user_id"/>
+            <result property="userName" column="user_name"/>
+            <result property="password" column="password"/>
+            <result property="nickName" column="nick_name"/>
+            <result property="email" column="email"/>
+        </association>
+    </resultMap>
+
+    <select id="findOrderInfoById" resultMap="orders">
+        SELECT * FROM order_info oi
+        LEFT JOIN user ON oi.user_id = user.id
+        LEFT JOIN goods ON oi.goods_id = goods.id
+        WHERE oi.id = #{id}
+    </select>
+
+    <select id="findAllOrderInfo" resultMap="orders">
+        SELECT * FROM order_info oi
+        LEFT JOIN user ON oi.user_id = user.id
+        LEFT JOIN goods ON oi.goods_id = goods.id
+    </select>
+</mapper>
