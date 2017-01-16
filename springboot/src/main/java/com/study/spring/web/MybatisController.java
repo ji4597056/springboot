@@ -10,6 +10,9 @@ import com.study.spring.enums.ReqAction;
 import com.study.spring.service.mybatis.IGoodsService;
 import com.study.spring.service.mybatis.IOrderInfoService;
 import com.study.spring.service.mybatis.IUserService;
+import io.swagger.annotations.ApiImplicitParam;
+import io.swagger.annotations.ApiImplicitParams;
+import io.swagger.annotations.ApiOperation;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
@@ -31,11 +34,13 @@ public class MybatisController {
   @Autowired private IUserService userService;
 
   @RequestMapping(value = "/goods/{id}", method = RequestMethod.GET)
+  @ApiOperation(value = "根据id查询goods")
   public Goods findGoodsById(@PathVariable Integer id) {
     return goodsService.findById(id);
   }
 
   @RequestMapping(value = "/goods", method = RequestMethod.GET)
+  @ApiOperation(value = "查询所有goods(支持分页,description模糊查询)")
   public SearchResModel<List<Goods>> findAllGoods(
       @RequestParam(required = false) String description,
       @RequestParam(required = false, defaultValue = "0") Integer pageNum,
@@ -44,6 +49,7 @@ public class MybatisController {
   }
 
   @RequestMapping(value = "/goods", method = RequestMethod.POST)
+  @ApiOperation(value = "根据id批量删除goods")
   public List<Goods> deleteGoodsByIds(@RequestBody ReqActionModel reqActionModel) {
     if (reqActionModel.getAction().equals(ReqAction.DELETE_BATCHES)) {
       List<Integer> ids = (List<Integer>) reqActionModel.getBody();
@@ -53,21 +59,25 @@ public class MybatisController {
   }
 
   @RequestMapping(value = "/orderInfo/{id}", method = RequestMethod.GET)
+  @ApiOperation(value = "根据id查询orderInfo")
   public OrderInfo findOrderInfoById(@PathVariable String id) {
     return orderInfoService.findById(id);
   }
 
   @RequestMapping(value = "/orderInfo", method = RequestMethod.GET)
+  @ApiOperation(value = "查询所有orderInfo")
   public List<OrderInfo> findAllOrderInfo() {
     return orderInfoService.findAll();
   }
 
   @RequestMapping(value = "/user/{id}", method = RequestMethod.GET)
+  @ApiOperation(value = "根据id查询user")
   public User findUserById(@PathVariable Integer id) {
     return userService.findById(id);
   }
 
   @RequestMapping(value = "/user", method = RequestMethod.GET)
+  @ApiOperation(value = "查询所有user")
   public List<User> findAllUser() {
     return userService.findAll();
   }

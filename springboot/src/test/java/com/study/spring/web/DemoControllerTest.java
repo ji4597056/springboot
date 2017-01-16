@@ -21,18 +21,18 @@ import java.util.List;
   webEnvironment = SpringBootTest.WebEnvironment.RANDOM_PORT
 )
 //@ActiveProfiles("dev")
-public class HelloControllerTest {
+public class DemoControllerTest {
 
   @Value("${test.name}")
   private String name;
 
-  @Autowired private HelloController helloController;
+  @Autowired private DemoController demoController;
 
   @Autowired private TestRestTemplate restTemplate;
 
   @Test
   public void getHelloWorld() throws Exception {
-    String result = helloController.getHelloWorld();
+    String result = demoController.getHelloWorld();
     Assert.assertEquals("Hello World!", result);
   }
 
@@ -46,13 +46,13 @@ public class HelloControllerTest {
   @Test
   public void postPerson() throws Exception {
     Person postPerson = new Person(1, "张三");
-    Person resultPerson = helloController.postPerson(postPerson);
+    Person resultPerson = demoController.postPerson(postPerson);
     Assert.assertEquals(postPerson, resultPerson);
   }
 
   @Test
   public void getPersons() throws Exception {
-    List<Person> persons = helloController.getPersons();
+    List<Person> persons = demoController.getPersons();
     Assert.assertEquals(3, persons.size());
   }
 
