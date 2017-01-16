@@ -3,12 +3,10 @@ package com.study.spring.web;
 import com.study.spring.annotation.profile.RedisEnv;
 import com.study.spring.entity.Person;
 import com.study.spring.service.redis.IPersonService;
-import io.swagger.annotations.ApiImplicitParam;
 import io.swagger.annotations.ApiOperation;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
-import javax.print.attribute.standard.MediaSize;
 import java.util.List;
 
 /**

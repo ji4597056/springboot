@@ -10,12 +10,11 @@ import java.util.List;
  */
 public interface IPersonService {
 
-    List<Person> findPersonsNoCache();
+  List<Person> findPersonsNoCache();
 
-    List<Person> findPersonsWithCache();
+  List<Person> findPersonsWithCache();
 
-    void addPersons(List<Person> persons);
+  void addPersons(List<Person> persons);
 
-    void deletePersonsById(List<Integer> ids);
-
+  void deletePersonsById(List<Integer> ids);
 }

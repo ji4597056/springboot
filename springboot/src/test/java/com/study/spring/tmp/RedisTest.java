@@ -21,24 +21,23 @@ import java.util.concurrent.TimeUnit;
 @ActiveProfiles("redis")
 public class RedisTest {
 
-    @Autowired
-    private RedisTemplate redisTemplate;
+  @Autowired private RedisTemplate redisTemplate;
 
-    @Test
-    public void testSaveString() throws Exception {
-        // 保存字符串
-        String key = "test_string_value";
-        redisTemplate.opsForValue().set(key, "111", 1, TimeUnit.MINUTES);
-        Assert.assertEquals("111", redisTemplate.opsForValue().get(key));
-    }
+  @Test
+  public void testSaveString() throws Exception {
+    // 保存字符串
+    String key = "test_string_value";
+    redisTemplate.opsForValue().set(key, "111", 1, TimeUnit.MINUTES);
+    Assert.assertEquals("111", redisTemplate.opsForValue().get(key));
+  }
 
-    @Test
-    public void testSaveObject() throws Exception {
-        //保存对象
-        String key = "test_object_value";
-        Person person = new Person(1, "张三");
-        redisTemplate.opsForValue().set(key, person, 1, TimeUnit.MINUTES);
-        Person personFromRedis = (Person) redisTemplate.opsForValue().get(key);
-        Assert.assertEquals(person, personFromRedis); //不是同一个对象
-    }
+  @Test
+  public void testSaveObject() throws Exception {
+    //保存对象
+    String key = "test_object_value";
+    Person person = new Person(1, "张三");
+    redisTemplate.opsForValue().set(key, person, 1, TimeUnit.MINUTES);
+    Person personFromRedis = (Person) redisTemplate.opsForValue().get(key);
+    Assert.assertEquals(person, personFromRedis); //不是同一个对象
+  }
 }

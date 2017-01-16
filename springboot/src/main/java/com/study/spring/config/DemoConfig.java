@@ -12,7 +12,7 @@ import java.util.List;
 @Component
 //可以使用locations指定配置文件路径,eg：locations = "classpath:config/application.properties"
 @ConfigurationProperties(prefix = "cfg")
-public class Configuation {
+public class DemoConfig {
 
   private String author;
 

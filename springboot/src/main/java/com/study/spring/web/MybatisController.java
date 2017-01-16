@@ -10,8 +10,6 @@ import com.study.spring.enums.ReqAction;
 import com.study.spring.service.mybatis.IGoodsService;
 import com.study.spring.service.mybatis.IOrderInfoService;
 import com.study.spring.service.mybatis.IUserService;
-import io.swagger.annotations.ApiImplicitParam;
-import io.swagger.annotations.ApiImplicitParams;
 import io.swagger.annotations.ApiOperation;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;

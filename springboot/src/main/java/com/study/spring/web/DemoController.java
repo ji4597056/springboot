@@ -1,7 +1,6 @@
 package com.study.spring.web;
 
 import com.study.spring.entity.Person;
-import io.swagger.annotations.ApiImplicitParam;
 import io.swagger.annotations.ApiOperation;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;

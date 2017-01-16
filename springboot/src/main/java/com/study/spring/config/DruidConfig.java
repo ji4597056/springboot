@@ -23,9 +23,9 @@ import java.sql.SQLException;
 @EnableTransactionManagement
 @ConfigurationProperties(prefix = "spring.datasource.druid")
 @IgnoreEnv
-public class DruidConfiguration {
+public class DruidConfig {
 
-  private static final Logger logger = LoggerFactory.getLogger(DruidConfiguration.class);
+  private static final Logger logger = LoggerFactory.getLogger(DruidConfig.class);
 
   private String username;
 

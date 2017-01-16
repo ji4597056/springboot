@@ -3,6 +3,8 @@ package com.study.spring.config;
 import com.alibaba.druid.support.http.StatViewServlet;
 import com.alibaba.druid.support.http.WebStatFilter;
 import com.study.spring.annotation.profile.DruidEnv;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.boot.autoconfigure.jdbc.DataSourceProperties;
 import org.springframework.boot.context.properties.ConfigurationProperties;
 import org.springframework.boot.context.properties.EnableConfigurationProperties;
@@ -25,7 +27,9 @@ import javax.sql.DataSource;
 @EnableConfigurationProperties(DataSourceProperties.class)
 @EnableTransactionManagement
 @DruidEnv
-public class SimpleDruidConfiguration {
+public class SimpleDruidConfig {
+
+  private static final Logger logger = LoggerFactory.getLogger(SimpleDruidConfig.class);
 
   @Bean
   @ConfigurationProperties(prefix = "spring.datasource.druid")
@@ -36,6 +40,7 @@ public class SimpleDruidConfiguration {
 
   /**
    * 注册一个StatViewServlet
+   *
    * @return
    */
   @Bean
@@ -57,6 +62,7 @@ public class SimpleDruidConfiguration {
 
   /**
    * 注册一个：filterRegistrationBean
+   *
    * @return
    */
   @Bean

@@ -1,6 +1,6 @@
 package com.study.spring.web;
 
-import com.study.spring.config.Configuation;
+import com.study.spring.config.DemoConfig;
 import com.study.spring.profile.IProfile;
 import io.swagger.annotations.ApiOperation;
 import org.slf4j.Logger;
@@ -26,7 +26,7 @@ public class ProfileController {
 
   @Autowired private IProfile profile;
 
-  @Autowired private Configuation configuation;
+  @Autowired private DemoConfig configuation;
 
   @RequestMapping(value = "name", method = RequestMethod.GET)
   @ApiOperation(value = "查询test.name变量值")
@@ -36,7 +36,7 @@ public class ProfileController {
 
   @RequestMapping(value = "config", method = RequestMethod.GET)
   @ApiOperation(value = "查询config配置信息")
-  public Configuation getConfiguation() {
+  public DemoConfig getConfiguation() {
     return configuation;
   }
 
