@@ -10,7 +10,7 @@ import java.util.List;
  * @since 2017/1/9 15:44
  */
 @Component
-//可以使用locations指定配置文件路径,eg：locations = "classpath:config/application.properties"
+// 可以使用locations指定配置文件路径,eg：locations = "classpath:config/application.properties"
 @ConfigurationProperties(prefix = "cfg")
 public class DemoConfig {
 

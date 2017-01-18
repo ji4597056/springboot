@@ -15,7 +15,7 @@ public interface IPersonMapper {
 
   List<Person> findPersons();
 
-  //使用"collection"、"list"、"array"作为参数,否则不能生成自增主键
+  // 使用"collection"、"list"、"array"作为参数,否则不能生成自增主键
   void addPersons(@Param("list") List<Person> list);
 
   void deletePersonByIds(@Param("ids") List<Integer> ids);

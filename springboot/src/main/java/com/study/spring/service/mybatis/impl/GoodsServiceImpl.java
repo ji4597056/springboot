@@ -38,7 +38,7 @@ public class GoodsServiceImpl implements IGoodsService {
   @Override
   public SearchResModel<List<Goods>> findLikeDes(
       String description, Integer pageNum, Integer pageSize) {
-    //PageHelper下紧跟mybatis查询方法才线程安全
+    // PageHelper下紧跟mybatis查询方法才线程安全
     PageHelper.startPage(pageNum, pageSize);
     List<Goods> goodsList = goodsMapper.findGoodsLikeDes(description);
     PageInfo page = new PageInfo(goodsList);

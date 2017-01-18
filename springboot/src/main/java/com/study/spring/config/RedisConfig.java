@@ -82,7 +82,7 @@ public class RedisConfig extends CachingConfigurerSupport {
   @Bean
   public RedisTemplate<String, String> redisTemplate(RedisConnectionFactory factory) {
     StringRedisTemplate template = new StringRedisTemplate(factory);
-    //用jackson序列化实体类
+    // 用jackson序列化实体类
     Jackson2JsonRedisSerializer jackson2JsonRedisSerializer =
         new Jackson2JsonRedisSerializer(Object.class);
     ObjectMapper om = new ObjectMapper();
