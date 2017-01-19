@@ -17,11 +17,11 @@ public class SampleJob implements Job {
 
   private static final Logger logger = LoggerFactory.getLogger(SampleJob.class);
 
-//  @Autowired private DataSource dataSource;
+  @Autowired private DataSource dataSource;
 
   @Override
   public void execute(JobExecutionContext context) throws JobExecutionException {
-    //    logger.info("dataSource:{}", dataSource.getClass());
+    logger.info("dataSource:{}", dataSource.getClass());
     System.out.println("执行任务");
   }
 }

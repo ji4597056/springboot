@@ -20,8 +20,7 @@ import org.springframework.scheduling.quartz.SchedulerFactoryBean;
 @AutoConfigureAfter(QuartzConfig.class)
 public class SampleTask {
 
-  @Autowired
-  private SchedulerFactoryBean factory;
+  @Autowired private SchedulerFactoryBean factory;
 
   private final String cronExpression = "*/5 * * * * ?";
 
@@ -33,7 +32,7 @@ public class SampleTask {
   @Bean
   public CronTriggerFactoryBean sampleJobTrigger(
       @Qualifier("sampleJobDetail") JobDetail jobDetail) {
-    CronTriggerFactoryBean triggerBean =  QuartzConfig.createCronTrigger(jobDetail, cronExpression);
+    CronTriggerFactoryBean triggerBean = QuartzConfig.createCronTrigger(jobDetail, cronExpression);
     factory.setTriggers(triggerBean.getObject());
     return triggerBean;
   }

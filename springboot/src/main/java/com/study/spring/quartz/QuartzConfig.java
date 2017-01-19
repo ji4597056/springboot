@@ -2,18 +2,16 @@ package com.study.spring.quartz;
 
 import com.study.spring.common.SysConstant;
 import com.study.spring.config.DruidConfig;
+import com.study.spring.config.SimpleDruidConfig;
 import org.quartz.JobDetail;
 import org.quartz.SimpleTrigger;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.beans.factory.config.PropertiesFactoryBean;
 import org.springframework.boot.autoconfigure.AutoConfigureAfter;
 import org.springframework.boot.autoconfigure.condition.ConditionalOnProperty;
-import org.springframework.boot.autoconfigure.jdbc.DataSourceProperties;
 import org.springframework.boot.context.properties.ConfigurationProperties;
-import org.springframework.boot.context.properties.EnableConfigurationProperties;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -36,29 +34,19 @@ import java.util.Properties;
 @Configuration
 @ConditionalOnProperty(name = "quartz.enabled", havingValue = "true")
 @AutoConfigureAfter(DruidConfig.class)
-@EnableConfigurationProperties({DataSourceProperties.class, QuartzDSProperties.class})
 public class QuartzConfig {
 
   private static final Logger logger = LoggerFactory.getLogger(QuartzConfig.class);
 
   private final String configPath = "/properties/quartz.properties";
 
-  /**
-   * 配置druid的quartz数据源
-   *
-   * @param properties
-   * @return
-   */
+
+
   @Bean(name = "quartzDataSource")
-  @ConfigurationProperties(prefix = SysConstant.DRUID_PREFIX)
+  @ConfigurationProperties(prefix = SysConstant.DRUID_PREFIX + ".quartz")
   public DataSource quartzDataSource(
-      DataSourceProperties properties, QuartzDSProperties quartzDSProperties) {
-    properties.setDriverClassName(quartzDSProperties.getDriverClassName());
-    properties.setUrl(quartzDSProperties.getUrl());
-    properties.setUsername(quartzDSProperties.getUsername());
-    properties.setPassword(quartzDSProperties.getPassword());
-    DataSource dataSource = properties.initializeDataSourceBuilder().build();
-    return dataSource;
+          SimpleDruidConfig.DruidDSFactory druidDSFactory) {
+    return druidDSFactory.createDataSource();
   }
 
   @Bean

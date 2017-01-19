@@ -14,7 +14,7 @@ import springfox.documentation.annotations.ApiIgnore;
 @Controller
 @RequestMapping("/admin")
 @ApiIgnore
-public class ApiController {
+public class AdminController {
 
   /**
    * 跳转到swagger-ui页面,该url不需要被swagger查询到
