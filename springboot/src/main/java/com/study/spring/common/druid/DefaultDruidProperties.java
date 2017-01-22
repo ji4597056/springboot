@@ -1,13 +1,10 @@
-package com.study.spring.config.properties;
+package com.study.spring.common.druid;
 
 import com.study.spring.common.SysConstant;
-import org.dom4j.io.STAXEventReader;
 import org.springframework.boot.context.properties.ConfigurationProperties;
 
-import java.util.Map;
-
 /**
- * Druid 默认配置
+ * Druid 配置属性
  *
  * @author Jeffrey
  * @since 2017/01/19 15:20
@@ -158,7 +155,8 @@ public class DefaultDruidProperties {
     return maxPoolPreparedStatementPerConnectionSize;
   }
 
-  public void setMaxPoolPreparedStatementPerConnectionSize(String maxPoolPreparedStatementPerConnectionSize) {
+  public void setMaxPoolPreparedStatementPerConnectionSize(
+      String maxPoolPreparedStatementPerConnectionSize) {
     this.maxPoolPreparedStatementPerConnectionSize = maxPoolPreparedStatementPerConnectionSize;
   }
 

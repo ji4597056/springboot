@@ -1,11 +1,11 @@
 package com.study.spring.config;
 
-import com.alibaba.druid.pool.DruidDataSourceFactory;
 import com.alibaba.druid.support.http.StatViewServlet;
 import com.alibaba.druid.support.http.WebStatFilter;
 import com.study.spring.annotation.profile.DruidEnv;
 import com.study.spring.common.SysConstant;
-import com.study.spring.config.properties.DefaultDruidProperties;
+import com.study.spring.common.druid.BaseDruidDataSourceFactory;
+import com.study.spring.common.druid.DefaultDruidProperties;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.boot.autoconfigure.jdbc.DataSourceProperties;
@@ -19,7 +19,6 @@ import org.springframework.context.annotation.Primary;
 import org.springframework.transaction.annotation.EnableTransactionManagement;
 
 import javax.sql.DataSource;
-import java.util.HashMap;
 
 /**
  * 配置druid数据源(推荐方式)
@@ -28,7 +27,7 @@ import java.util.HashMap;
  * @since 2017/1/9 15:44
  */
 @Configuration
-@EnableConfigurationProperties({DataSourceProperties.class,DefaultDruidProperties.class})
+@EnableConfigurationProperties({DataSourceProperties.class, DefaultDruidProperties.class})
 @EnableTransactionManagement
 @DruidEnv
 public class SimpleDruidConfig {
@@ -38,14 +37,13 @@ public class SimpleDruidConfig {
   @Bean
   @ConfigurationProperties(prefix = SysConstant.DRUID_PREFIX)
   @Primary
-  public DataSource dataSource(
-      DataSourceProperties properties) {
+  public DataSource dataSource(DataSourceProperties properties) {
     return properties.initializeDataSourceBuilder().build();
   }
 
   @Bean
-  public DruidDSFactory druidDSFactory(DefaultDruidProperties properties) {
-    return new DruidDSFactory(properties);
+  public BaseDruidDataSourceFactory druidDataSourceFactory(DefaultDruidProperties properties) {
+    return new BaseDruidDataSourceFactory(properties);
   }
 
   /**
@@ -84,52 +82,5 @@ public class SimpleDruidConfig {
     filterRegistrationBean.addInitParameter(
         "exclusions", "*.js,*.gif,*.jpg,*.png,*.css,*.ico,/admin/druid/*");
     return filterRegistrationBean;
-  }
-
-  /**
-   * Durid datasource工厂类
-   */
-  public class DruidDSFactory{
-
-    private DefaultDruidProperties properties;
-
-    public DruidDSFactory(DefaultDruidProperties properties) {
-      this.properties = properties;
-    }
-
-    public DefaultDruidProperties getProperties() {
-      return properties;
-    }
-
-    public void setProperties(DefaultDruidProperties properties) {
-      this.properties = properties;
-    }
-
-    public DataSource createDataSource() {
-      HashMap<String, Object> map = new HashMap<>();
-      map.put(DruidDataSourceFactory.PROP_DRIVERCLASSNAME, properties.getDriverClassName());
-      map.put(DruidDataSourceFactory.PROP_URL, properties.getUrl());
-      map.put(DruidDataSourceFactory.PROP_USERNAME, properties.getUsername());
-      map.put(DruidDataSourceFactory.PROP_PASSWORD, properties.getPassword());
-      map.put(DruidDataSourceFactory.PROP_INITIALSIZE, properties.getInitialSize());
-      map.put(DruidDataSourceFactory.PROP_MINIDLE, properties.getMinIdle());
-      map.put(DruidDataSourceFactory.PROP_MAXACTIVE, properties.getMaxActive());
-      map.put(DruidDataSourceFactory.PROP_MAXWAIT, properties.getMaxWait());
-      map.put(DruidDataSourceFactory.PROP_TIMEBETWEENEVICTIONRUNSMILLIS, properties.getTimeBetweenEvictionRunsMillis());
-      map.put(DruidDataSourceFactory.PROP_MINEVICTABLEIDLETIMEMILLIS, properties.getMinEvictableIdleTimeMillis());
-      map.put(DruidDataSourceFactory.PROP_VALIDATIONQUERY, properties.getValidationQuery());
-      map.put(DruidDataSourceFactory.PROP_TESTWHILEIDLE, properties.getTestWhileIdle());
-      map.put(DruidDataSourceFactory.PROP_TESTONBORROW, properties.getTestOnBorrow());
-      map.put(DruidDataSourceFactory.PROP_TESTONRETURN, properties.getTestOnReturn());
-      map.put(DruidDataSourceFactory.PROP_POOLPREPAREDSTATEMENTS, properties.getPoolPreparedStatements());
-      map.put(DruidDataSourceFactory.PROP_FILTERS, properties.getFilters());
-      map.put(DruidDataSourceFactory.PROP_CONNECTIONPROPERTIES, properties.getConnectionProperties());
-      try {
-        return DruidDataSourceFactory.createDataSource(map);
-      } catch (Exception e) {
-        e.printStackTrace();
-      }
-      return null;
-    }
   }
 }

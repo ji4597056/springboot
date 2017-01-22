@@ -48,7 +48,7 @@ public class MybatisController {
 
   @RequestMapping(value = "/goods", method = RequestMethod.POST)
   @ApiOperation(value = "根据id批量删除goods")
-  public List<Goods> deleteGoodsByIds(@RequestBody ReqActionModel reqActionModel) {
+  public List<Goods> deleteGoodsByIds(@RequestBody ReqActionModel<List<Integer>> reqActionModel) {
     if (reqActionModel.getAction().equals(ReqAction.DELETE_BATCHES)) {
       List<Integer> ids = (List<Integer>) reqActionModel.getBody();
       return goodsService.deleteByIds(ids);
@@ -56,13 +56,13 @@ public class MybatisController {
     return null;
   }
 
-  @RequestMapping(value = "/orderInfo/{id}", method = RequestMethod.GET)
+  @RequestMapping(value = "/order_info/{id}", method = RequestMethod.GET)
   @ApiOperation(value = "根据id查询orderInfo")
   public OrderInfo findOrderInfoById(@PathVariable String id) {
     return orderInfoService.findById(id);
   }
 
-  @RequestMapping(value = "/orderInfo", method = RequestMethod.GET)
+  @RequestMapping(value = "/order_info", method = RequestMethod.GET)
   @ApiOperation(value = "查询所有orderInfo")
   public List<OrderInfo> findAllOrderInfo() {
     return orderInfoService.findAll();

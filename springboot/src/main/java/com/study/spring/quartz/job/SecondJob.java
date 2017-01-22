@@ -13,15 +13,14 @@ import javax.sql.DataSource;
  * @author Jeffrey
  * @since 2017/01/18 11:17
  */
-public class SampleJob implements Job {
+public class SecondJob implements Job {
 
-  private static final Logger logger = LoggerFactory.getLogger(SampleJob.class);
+  private static final Logger logger = LoggerFactory.getLogger(SecondJob.class);
 
   @Autowired private DataSource dataSource;
 
   @Override
   public void execute(JobExecutionContext context) throws JobExecutionException {
-    logger.info("dataSource:{}", dataSource.getClass());
-    System.out.println("执行任务");
+    logger.info("正在执行第二个任务,dataSource:{}", dataSource.getClass());
   }
 }

@@ -1,10 +1,12 @@
-package com.study.spring.quartz;
+package com.study.spring.config;
 
 import com.study.spring.common.SysConstant;
-import com.study.spring.config.DruidConfig;
-import com.study.spring.config.SimpleDruidConfig;
+import com.study.spring.common.druid.BaseDruidDataSourceFactory;
+import com.study.spring.common.quartz.AutowiringSpringBeanJobFactory;
 import org.quartz.JobDetail;
 import org.quartz.SimpleTrigger;
+import org.quartz.Trigger;
+import org.quartz.spi.JobFactory;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Qualifier;
@@ -40,13 +42,23 @@ public class QuartzConfig {
 
   private final String configPath = "/properties/quartz.properties";
 
-
-
+  /**
+   * DataSource 配置
+   *
+   * @param factory
+   * @return
+   */
   @Bean(name = "quartzDataSource")
   @ConfigurationProperties(prefix = SysConstant.DRUID_PREFIX + ".quartz")
-  public DataSource quartzDataSource(
-          SimpleDruidConfig.DruidDSFactory druidDSFactory) {
-    return druidDSFactory.createDataSource();
+  public DataSource quartzDataSource(BaseDruidDataSourceFactory factory) throws Exception {
+    return factory.createDataSource();
+  }
+
+  @Bean
+  public JobFactory jobFactory(ApplicationContext applicationContext) {
+    AutowiringSpringBeanJobFactory jobFactory = new AutowiringSpringBeanJobFactory();
+    jobFactory.setApplicationContext(applicationContext);
+    return jobFactory;
   }
 
   @Bean
@@ -60,12 +72,17 @@ public class QuartzConfig {
 
   @Bean
   public SchedulerFactoryBean schedulerFactoryBean(
-      ApplicationContext context, @Qualifier("quartzDataSource") DataSource dataSource)
+      JobFactory jobFactory,
+      @Qualifier("quartzDataSource") DataSource dataSource,
+      @Qualifier("quartzProperties") Properties properties,
+      Trigger[] triggers)
       throws IOException {
     SchedulerFactoryBean factory = new SchedulerFactoryBean();
-    factory.setApplicationContext(context);
-    factory.setQuartzProperties(quartzProperties());
+    factory.setJobFactory(jobFactory);
+    factory.setQuartzProperties(properties);
     factory.setDataSource(dataSource);
+    factory.setTriggers(triggers);
+    factory.setOverwriteExistingJobs(true);
     return factory;
   }
 
@@ -89,7 +106,8 @@ public class QuartzConfig {
    * @param pollFrequencyMs
    * @return
    */
-  public static SimpleTriggerFactoryBean createTrigger(JobDetail jobDetail, long pollFrequencyMs) {
+  public static SimpleTriggerFactoryBean createSimpleTrigger(
+      JobDetail jobDetail, long pollFrequencyMs) {
     SimpleTriggerFactoryBean factoryBean = new SimpleTriggerFactoryBean();
     factoryBean.setJobDetail(jobDetail);
     factoryBean.setStartDelay(0L);
