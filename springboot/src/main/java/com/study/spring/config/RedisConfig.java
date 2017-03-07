@@ -18,6 +18,7 @@ import org.springframework.data.redis.connection.RedisConnectionFactory;
 import org.springframework.data.redis.core.RedisTemplate;
 import org.springframework.data.redis.core.StringRedisTemplate;
 import org.springframework.data.redis.serializer.Jackson2JsonRedisSerializer;
+import org.springframework.data.redis.serializer.StringRedisSerializer;
 import org.springframework.transaction.annotation.EnableTransactionManagement;
 
 import java.lang.reflect.Method;
@@ -53,7 +54,7 @@ public class RedisConfig extends CachingConfigurerSupport {
         sb.append(target.getClass().getName());
         sb.append(method.getName());
         for (Object obj : params) {
-          sb.append(obj.toString());
+          sb.append(obj == null ? "" : obj.toString());
         }
         return sb.toString();
       }
@@ -80,8 +81,9 @@ public class RedisConfig extends CachingConfigurerSupport {
    * @return RedisTemplate
    */
   @Bean
-  public RedisTemplate<String, String> redisTemplate(RedisConnectionFactory factory) {
-    StringRedisTemplate template = new StringRedisTemplate(factory);
+  public RedisTemplate<String, Object> redisTemplate(RedisConnectionFactory factory) {
+    RedisTemplate<String, Object> template = new RedisTemplate();
+    template.setConnectionFactory(factory);
     // 用jackson序列化实体类
     Jackson2JsonRedisSerializer jackson2JsonRedisSerializer =
         new Jackson2JsonRedisSerializer(Object.class);
@@ -89,6 +91,7 @@ public class RedisConfig extends CachingConfigurerSupport {
     om.setVisibility(PropertyAccessor.ALL, JsonAutoDetect.Visibility.ANY);
     om.enableDefaultTyping(ObjectMapper.DefaultTyping.NON_FINAL);
     jackson2JsonRedisSerializer.setObjectMapper(om);
+    template.setKeySerializer(new StringRedisSerializer());
     template.setValueSerializer(jackson2JsonRedisSerializer);
     template.afterPropertiesSet();
     return template;
