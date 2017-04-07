@@ -16,13 +16,11 @@ import springfox.documentation.annotations.ApiIgnore;
 @ApiIgnore
 public class AdminController {
 
-  /**
-   * 跳转到swagger-ui页面,该url不需要被swagger查询到
-   *
-   * @return
-   */
-  @RequestMapping(value = "api", method = RequestMethod.GET)
-  public String redirectSwaggerApi() {
-    return "redirect:/swagger-ui.html";
-  }
+    /**
+     * 跳转到swagger-ui页面,该url不需要被swagger查询到
+     */
+    @RequestMapping(value = "api", method = RequestMethod.GET)
+    public String redirectSwaggerApi() {
+        return "redirect:/swagger-ui.html";
+    }
 }

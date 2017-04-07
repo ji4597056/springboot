@@ -4,11 +4,10 @@ import com.study.spring.annotation.profile.MybatisEnv;
 import com.study.spring.dao.mybatis.IUserMapper;
 import com.study.spring.entity.mybatis.User;
 import com.study.spring.service.mybatis.IUserService;
+import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
-
-import java.util.List;
 
 /**
  * @author Jeffrey
@@ -19,15 +18,16 @@ import java.util.List;
 @MybatisEnv
 public class UserServiceImpl implements IUserService {
 
-  @Autowired private IUserMapper userMapper;
+    @Autowired
+    private IUserMapper userMapper;
 
-  @Override
-  public User findById(Integer id) {
-    return userMapper.findUserById(id);
-  }
+    @Override
+    public User findById(Integer id) {
+        return userMapper.findUserById(id);
+    }
 
-  @Override
-  public List<User> findAll() {
-    return userMapper.findAllUsers();
-  }
+    @Override
+    public List<User> findAll() {
+        return userMapper.findAllUsers();
+    }
 }

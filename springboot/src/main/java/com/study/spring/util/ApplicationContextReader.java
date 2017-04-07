@@ -14,18 +14,18 @@ import org.springframework.stereotype.Component;
 @Component
 public class ApplicationContextReader implements ApplicationContextAware {
 
-	private static ApplicationContext appContext;
+    private static ApplicationContext appContext;
 
-	@Override
-	public void setApplicationContext(ApplicationContext context) throws BeansException {
-		appContext = context;
-	}
+    @Override
+    public void setApplicationContext(ApplicationContext context) throws BeansException {
+        appContext = context;
+    }
 
-	public static <T> T getBean(String beanName) {
-		return (T) appContext.getBean(beanName);
-	}
+    public static <T> T getBean(String beanName) {
+        return (T) appContext.getBean(beanName);
+    }
 
-	public static <T> T getBean(Class<T> clazz) {
-		return appContext.getBean(clazz);
-	}
+    public static <T> T getBean(Class<T> clazz) {
+        return appContext.getBean(clazz);
+    }
 }

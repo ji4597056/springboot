@@ -14,8 +14,8 @@ import org.springframework.stereotype.Component;
 @Primary
 public class ProfileProduct implements IProfile {
 
-  @Override
-  public String getName() {
-    return "this is ProfileProduct!";
-  }
+    @Override
+    public String getName() {
+        return "this is ProfileProduct!";
+    }
 }

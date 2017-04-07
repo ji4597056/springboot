@@ -4,13 +4,12 @@ import com.study.spring.annotation.profile.JpaEnv;
 import com.study.spring.dao.jpa.IGoodsDao;
 import com.study.spring.entity.jpa.Goods;
 import com.study.spring.service.jpa.IGoodsService;
+import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Primary;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
-
-import java.util.List;
 
 /**
  * @author Jeffrey
@@ -22,25 +21,27 @@ import java.util.List;
 @JpaEnv
 public class GoodsServiceJpaImpl implements IGoodsService {
 
-  @Autowired private IGoodsDao goodsDao;
+    @Autowired
+    private IGoodsDao goodsDao;
 
-  @Autowired private JdbcTemplate jdbcTemplate;
+    @Autowired
+    private JdbcTemplate jdbcTemplate;
 
-  @Override
-  public List<Goods> save(Goods goods) {
-    goodsDao.save(goods);
-    return goodsDao.findAll();
-  }
+    @Override
+    public List<Goods> save(Goods goods) {
+        goodsDao.save(goods);
+        return goodsDao.findAll();
+    }
 
-  @Override
-  public List<Goods> deleteById(Integer id) {
-    String sql = "delete from goods where id=" + id;
-    jdbcTemplate.update(sql);
-    return goodsDao.findAll();
-  }
+    @Override
+    public List<Goods> deleteById(Integer id) {
+        String sql = "delete from goods where id=" + id;
+        jdbcTemplate.update(sql);
+        return goodsDao.findAll();
+    }
 
-  @Override
-  public List<Goods> findAll() {
-    return goodsDao.findAll();
-  }
+    @Override
+    public List<Goods> findAll() {
+        return goodsDao.findAll();
+    }
 }

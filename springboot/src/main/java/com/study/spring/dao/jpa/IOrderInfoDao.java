@@ -9,4 +9,6 @@ import org.springframework.data.jpa.repository.JpaRepository;
  * @since 2017/1/9 15:46
  */
 @JpaEnv
-public interface IOrderInfoDao extends JpaRepository<OrderInfo, String> {}
+public interface IOrderInfoDao extends JpaRepository<OrderInfo, String> {
+
+}

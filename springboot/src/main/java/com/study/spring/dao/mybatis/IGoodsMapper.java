@@ -1,10 +1,9 @@
 package com.study.spring.dao.mybatis;
 
 import com.study.spring.entity.mybatis.Goods;
+import java.util.List;
 import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Param;
-
-import java.util.List;
 
 /**
  * @author Jeffrey
@@ -13,11 +12,11 @@ import java.util.List;
 @Mapper
 public interface IGoodsMapper {
 
-  Goods findGoodsById(@Param("id") Integer id);
+    Goods findGoodsById(@Param("id") Integer id);
 
-  List<Goods> findAllGoods();
+    List<Goods> findAllGoods();
 
-  List<Goods> findGoodsLikeDes(@Param("description") String description);
+    List<Goods> findGoodsLikeDes(@Param("description") String description);
 
-  void deleteGoodsByIds(@Param("ids") List<Integer> ids);
+    void deleteGoodsByIds(@Param("ids") List<Integer> ids);
 }

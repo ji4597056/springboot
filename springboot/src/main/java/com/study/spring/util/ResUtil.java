@@ -13,15 +13,13 @@ import org.slf4j.LoggerFactory;
  */
 public class ResUtil {
 
-  private static final Logger logger = LoggerFactory.getLogger(ResUtil.class);
+    private static final Logger logger = LoggerFactory.getLogger(ResUtil.class);
 
-  /**
-   * 返回查询分页响应实体
-   *
-   * @param page
-   * @return
-   */
-  public static SearchResModel getSearchRes(PageInfo page) {
-    return new SearchResModel(page.getPageNum(), page.getSize(), page.getPages(), page.getList());
-  }
+    /**
+     * 返回查询分页响应实体
+     */
+    public static SearchResModel getSearchRes(PageInfo page) {
+        return new SearchResModel(page.getPageNum(), page.getSize(), page.getPages(),
+            page.getList());
+    }
 }

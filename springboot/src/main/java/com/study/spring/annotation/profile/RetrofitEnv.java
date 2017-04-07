@@ -8,11 +8,11 @@ import org.springframework.context.annotation.Profile;
 
 /**
  * @author Jeffrey
- * @since 2017/1/9 15:42
+ * @since 2017/04/07 15:26
  */
 @Target({ElementType.TYPE, ElementType.METHOD})
 @Retention(RetentionPolicy.RUNTIME)
-@Profile("product")
-public @interface ProductEnv {
+@Profile("retrofit")
+public @interface RetrofitEnv {
 
 }

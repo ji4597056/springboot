@@ -8,4 +8,6 @@ import org.springframework.stereotype.Component;
  * @since 2017/1/9 15:48
  */
 @Component
-public class ProfileDefault implements IProfile {}
+public class ProfileDefault implements IProfile {
+
+}

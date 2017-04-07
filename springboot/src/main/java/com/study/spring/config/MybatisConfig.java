@@ -1,6 +1,7 @@
 package com.study.spring.config;
 
 import com.study.spring.annotation.profile.IgnoreEnv;
+import javax.sql.DataSource;
 import org.apache.ibatis.session.SqlSessionFactory;
 import org.mybatis.spring.SqlSessionFactoryBean;
 import org.mybatis.spring.annotation.MapperScan;
@@ -12,8 +13,6 @@ import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.core.io.support.PathMatchingResourcePatternResolver;
 import org.springframework.core.io.support.ResourcePatternResolver;
-
-import javax.sql.DataSource;
 
 /**
  * mybatis配置,已经自动配置，无需自己配置,若配置了则自动配置将失效
@@ -27,18 +26,19 @@ import javax.sql.DataSource;
 @IgnoreEnv
 public class MybatisConfig {
 
-  private static final Logger logger = LoggerFactory.getLogger(MybatisConfig.class);
+    private static final Logger logger = LoggerFactory.getLogger(MybatisConfig.class);
 
-  @Autowired private DataSource dataSource;
+    @Autowired
+    private DataSource dataSource;
 
-  @Bean
-  public SqlSessionFactory sqlSessionFactory(DataSource dataSource) throws Exception {
-    SqlSessionFactoryBean sqlSessionFactoryBean = new SqlSessionFactoryBean();
-    sqlSessionFactoryBean.setDataSource(dataSource);
-    ResourcePatternResolver resolver = new PathMatchingResourcePatternResolver();
-    sqlSessionFactoryBean.setMapperLocations(
-        resolver.getResources("classpath:mybatis/mapper/*Mapper.xml"));
-    sqlSessionFactoryBean.setTypeAliasesPackage("com.study.spring.entity.mybatis");
-    return sqlSessionFactoryBean.getObject();
-  }
+    @Bean
+    public SqlSessionFactory sqlSessionFactory(DataSource dataSource) throws Exception {
+        SqlSessionFactoryBean sqlSessionFactoryBean = new SqlSessionFactoryBean();
+        sqlSessionFactoryBean.setDataSource(dataSource);
+        ResourcePatternResolver resolver = new PathMatchingResourcePatternResolver();
+        sqlSessionFactoryBean.setMapperLocations(
+            resolver.getResources("classpath:mybatis/mapper/*Mapper.xml"));
+        sqlSessionFactoryBean.setTypeAliasesPackage("com.study.spring.entity.mybatis");
+        return sqlSessionFactoryBean.getObject();
+    }
 }

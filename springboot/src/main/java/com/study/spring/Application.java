@@ -17,17 +17,17 @@ import org.springframework.context.annotation.Bean;
 //@ServletComponentScan
 public class Application {
 
-  public static void main(String[] args) {
-    SpringApplication.run(Application.class, args);
-  }
+    public static void main(String[] args) {
+        SpringApplication.run(Application.class, args);
+    }
 
-  @Bean
-  public StartupFirstRunner firstRunner() {
-    return new StartupFirstRunner();
-  }
+    @Bean
+    public StartupFirstRunner firstRunner() {
+        return new StartupFirstRunner();
+    }
 
-  @Bean
-  public StartupSecondRunner secondRunner() {
-    return new StartupSecondRunner();
-  }
+    @Bean
+    public StartupSecondRunner secondRunner() {
+        return new StartupSecondRunner();
+    }
 }

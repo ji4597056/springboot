@@ -10,67 +10,68 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 @JsonIgnoreProperties(ignoreUnknown = true)
 public class SearchResModel<T> {
 
-  @JsonProperty(value = "pageSize")
-  int pageSize;
+    @JsonProperty(value = "pageSize")
+    int pageSize;
 
-  @JsonProperty(value = "pageNum")
-  int pageNum;
+    @JsonProperty(value = "pageNum")
+    int pageNum;
 
-  @JsonProperty(value = "totalPage")
-  long totalPage;
+    @JsonProperty(value = "totalPage")
+    long totalPage;
 
-  @JsonProperty("result")
-  T result;
+    @JsonProperty("result")
+    T result;
 
-  public SearchResModel() {}
+    public SearchResModel() {
+    }
 
-  public SearchResModel(int pageSize, int pageNum, long totalPage, T result) {
-    this.pageSize = pageSize;
-    this.pageNum = pageNum;
-    this.totalPage = totalPage;
-    this.result = result;
-  }
+    public SearchResModel(int pageSize, int pageNum, long totalPage, T result) {
+        this.pageSize = pageSize;
+        this.pageNum = pageNum;
+        this.totalPage = totalPage;
+        this.result = result;
+    }
 
-  public int getPageSize() {
-    return pageSize;
-  }
+    public int getPageSize() {
+        return pageSize;
+    }
 
-  public void setPageSize(int pageSize) {
-    this.pageSize = pageSize;
-  }
+    public void setPageSize(int pageSize) {
+        this.pageSize = pageSize;
+    }
 
-  public int getPageNum() {
-    return pageNum;
-  }
+    public int getPageNum() {
+        return pageNum;
+    }
 
-  public void setPageNum(int pageNum) {
-    this.pageNum = pageNum;
-  }
+    public void setPageNum(int pageNum) {
+        this.pageNum = pageNum;
+    }
 
-  public long getTotalPage() {
-    return totalPage;
-  }
+    public long getTotalPage() {
+        return totalPage;
+    }
 
-  public void setTotalPage(long totalPage) {
-    this.totalPage = totalPage;
-  }
+    public void setTotalPage(long totalPage) {
+        this.totalPage = totalPage;
+    }
 
-  public T getResult() {
-    return result;
-  }
+    public T getResult() {
+        return result;
+    }
 
-  public void setResult(T result) {
-    this.result = result;
-  }
+    public void setResult(T result) {
+        this.result = result;
+    }
 
-  @Override
-  public String toString() {
-    final StringBuilder sb = new StringBuilder("SearchResModel{");
-    sb.append("pageSize=").append(pageSize);
-    sb.append(", pageNum=").append(pageNum);
-    sb.append(", totalPage=").append(totalPage);
-    sb.append(", result=").append(result);
-    sb.append('}');
-    return sb.toString();
-  }
+    @Override
+    public String toString() {
+        final StringBuilder sb = new StringBuilder("SearchResModel{");
+        sb.append("pageSize=").append(pageSize);
+        sb.append(", pageNum=").append(pageNum);
+        sb.append(", totalPage=").append(totalPage);
+        sb.append(", result=").append(result);
+        sb.append('}');
+        return sb.toString();
+    }
 }

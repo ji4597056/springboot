@@ -1,10 +1,9 @@
 package com.study.spring.dao.redis;
 
 import com.study.spring.entity.Person;
+import java.util.List;
 import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Param;
-
-import java.util.List;
 
 /**
  * @author Jeffrey
@@ -13,10 +12,10 @@ import java.util.List;
 @Mapper
 public interface IPersonMapper {
 
-  List<Person> findPersons();
+    List<Person> findPersons();
 
-  // 使用"collection"、"list"、"array"作为参数,否则不能生成自增主键
-  void addPersons(@Param("list") List<Person> list);
+    // 使用"collection"、"list"、"array"作为参数,否则不能生成自增主键
+    void addPersons(@Param("list") List<Person> list);
 
-  void deletePersonByIds(@Param("ids") List<Integer> ids);
+    void deletePersonByIds(@Param("ids") List<Integer> ids);
 }

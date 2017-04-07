@@ -10,8 +10,8 @@ import org.springframework.core.annotation.Order;
 @Order(value = 1)
 public class StartupFirstRunner implements CommandLineRunner {
 
-  @Override
-  public void run(String... strings) throws Exception {
-    System.out.println("this is first runner!");
-  }
+    @Override
+    public void run(String... strings) throws Exception {
+        System.out.println("this is first runner!");
+    }
 }

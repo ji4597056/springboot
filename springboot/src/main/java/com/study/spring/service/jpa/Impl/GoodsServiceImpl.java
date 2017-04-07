@@ -10,4 +10,6 @@ import org.springframework.stereotype.Service;
  */
 @Service
 @IgnoreEnv
-public class GoodsServiceImpl implements IGoodsService {}
+public class GoodsServiceImpl implements IGoodsService {
+
+}

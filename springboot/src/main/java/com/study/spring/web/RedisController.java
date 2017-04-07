@@ -4,10 +4,13 @@ import com.study.spring.annotation.profile.RedisEnv;
 import com.study.spring.entity.Person;
 import com.study.spring.service.redis.IPersonService;
 import io.swagger.annotations.ApiOperation;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.*;
-
 import java.util.List;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.RestController;
 
 /**
  * @author Jeffrey
@@ -18,28 +21,29 @@ import java.util.List;
 @RedisEnv
 public class RedisController {
 
-  @Autowired private IPersonService personService;
+    @Autowired
+    private IPersonService personService;
 
-  @RequestMapping(value = "/person", method = RequestMethod.GET)
-  @ApiOperation(value = "查询所有person信息,支持缓存功能")
-  public List<Person> findPersons(
-      @RequestParam(required = false, defaultValue = "true") boolean cache) {
-    if (cache == false) {
-      return personService.findPersonsNoCache();
-    } else {
-      return personService.findPersonsWithCache();
+    @RequestMapping(value = "/person", method = RequestMethod.GET)
+    @ApiOperation(value = "查询所有person信息,支持缓存功能")
+    public List<Person> findPersons(
+        @RequestParam(required = false, defaultValue = "true") boolean cache) {
+        if (cache == false) {
+            return personService.findPersonsNoCache();
+        } else {
+            return personService.findPersonsWithCache();
+        }
     }
-  }
 
-  @RequestMapping(value = "/person", method = RequestMethod.POST)
-  @ApiOperation(value = "增加person信息,会刷新缓存")
-  public void addPersons(@RequestBody List<Person> persons) {
-    personService.addPersons(persons);
-  }
+    @RequestMapping(value = "/person", method = RequestMethod.POST)
+    @ApiOperation(value = "增加person信息,会刷新缓存")
+    public void addPersons(@RequestBody List<Person> persons) {
+        personService.addPersons(persons);
+    }
 
-  @RequestMapping(value = "/person", method = RequestMethod.DELETE)
-  @ApiOperation(value = "根据id批量删除person信息,不会刷新缓存")
-  public void deletePersonsById(@RequestBody List<Integer> ids) {
-    personService.deletePersonsById(ids);
-  }
+    @RequestMapping(value = "/person", method = RequestMethod.DELETE)
+    @ApiOperation(value = "根据id批量删除person信息,不会刷新缓存")
+    public void deletePersonsById(@RequestBody List<Integer> ids) {
+        personService.deletePersonsById(ids);
+    }
 }

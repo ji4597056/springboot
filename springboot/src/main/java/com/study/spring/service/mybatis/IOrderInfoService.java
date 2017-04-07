@@ -1,7 +1,6 @@
 package com.study.spring.service.mybatis;
 
 import com.study.spring.entity.mybatis.OrderInfo;
-
 import java.util.List;
 
 /**
@@ -10,11 +9,11 @@ import java.util.List;
  */
 public interface IOrderInfoService {
 
-  default OrderInfo findById(String id) {
-    return null;
-  }
+    default OrderInfo findById(String id) {
+        return null;
+    }
 
-  default List<OrderInfo> findAll() {
-    return null;
-  }
+    default List<OrderInfo> findAll() {
+        return null;
+    }
 }

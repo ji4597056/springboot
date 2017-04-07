@@ -1,10 +1,9 @@
 package com.study.spring.dao.mybatis;
 
 import com.study.spring.entity.mybatis.User;
+import java.util.List;
 import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Param;
-
-import java.util.List;
 
 /**
  * @author Jeffrey
@@ -13,7 +12,7 @@ import java.util.List;
 @Mapper
 public interface IUserMapper {
 
-  User findUserById(@Param("id") Integer id);
+    User findUserById(@Param("id") Integer id);
 
-  List<User> findAllUsers();
+    List<User> findAllUsers();
 }

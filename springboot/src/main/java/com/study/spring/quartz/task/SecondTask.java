@@ -19,16 +19,16 @@ import org.springframework.scheduling.quartz.JobDetailFactoryBean;
 @AutoConfigureBefore(QuartzConfig.class)
 public class SecondTask {
 
-  private final String cronExpression = "*/15 * * * * ?";
+    private final String cronExpression = "*/15 * * * * ?";
 
-  @Bean
-  public JobDetailFactoryBean secondJobDetail() {
-    return QuartzConfig.createJobDetail(SecondJob.class);
-  }
+    @Bean
+    public JobDetailFactoryBean secondJobDetail() {
+        return QuartzConfig.createJobDetail(SecondJob.class);
+    }
 
-  @Bean
-  public CronTriggerFactoryBean secondTrigger(@Qualifier("secondJobDetail") JobDetail jobDetail)
-      throws SchedulerException {
-    return QuartzConfig.createCronTrigger(jobDetail, cronExpression);
-  }
+    @Bean
+    public CronTriggerFactoryBean secondTrigger(@Qualifier("secondJobDetail") JobDetail jobDetail)
+        throws SchedulerException {
+        return QuartzConfig.createCronTrigger(jobDetail, cronExpression);
+    }
 }

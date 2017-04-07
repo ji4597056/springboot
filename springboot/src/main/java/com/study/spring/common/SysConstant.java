@@ -7,6 +7,7 @@ package com.study.spring.common;
  * @since 2017/01/18 17:28
  */
 public class SysConstant {
-  /* druid properties 配置前缀 */
-  public static final String DRUID_PREFIX = "spring.datasource.druid";
+
+    /* druid properties 配置前缀 */
+    public static final String DRUID_PREFIX = "spring.datasource.druid";
 }

@@ -6,7 +6,7 @@ package com.study.spring.profile;
  */
 public interface IProfile {
 
-  default String getName() {
-    return "this is IProfile!";
-  }
+    default String getName() {
+        return "this is IProfile!";
+    }
 }

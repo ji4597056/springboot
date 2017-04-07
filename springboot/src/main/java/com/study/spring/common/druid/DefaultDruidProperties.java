@@ -12,167 +12,167 @@ import org.springframework.boot.context.properties.ConfigurationProperties;
 @ConfigurationProperties(prefix = SysConstant.DRUID_PREFIX)
 public class DefaultDruidProperties {
 
-  private String driverClassName;
-  private String url;
-  private String username;
-  private String password;
-  private String initialSize;
-  private String minIdle;
-  private String maxActive;
-  private String maxWait;
-  private String timeBetweenEvictionRunsMillis;
-  private String minEvictableIdleTimeMillis;
-  private String validationQuery;
-  private String testWhileIdle;
-  private String testOnBorrow;
-  private String testOnReturn;
-  private String poolPreparedStatements;
-  private String maxPoolPreparedStatementPerConnectionSize;
-  private String filters;
-  private String connectionProperties;
+    private String driverClassName;
+    private String url;
+    private String username;
+    private String password;
+    private String initialSize;
+    private String minIdle;
+    private String maxActive;
+    private String maxWait;
+    private String timeBetweenEvictionRunsMillis;
+    private String minEvictableIdleTimeMillis;
+    private String validationQuery;
+    private String testWhileIdle;
+    private String testOnBorrow;
+    private String testOnReturn;
+    private String poolPreparedStatements;
+    private String maxPoolPreparedStatementPerConnectionSize;
+    private String filters;
+    private String connectionProperties;
 
-  public String getDriverClassName() {
-    return driverClassName;
-  }
+    public String getDriverClassName() {
+        return driverClassName;
+    }
 
-  public void setDriverClassName(String driverClassName) {
-    this.driverClassName = driverClassName;
-  }
+    public void setDriverClassName(String driverClassName) {
+        this.driverClassName = driverClassName;
+    }
 
-  public String getUrl() {
-    return url;
-  }
+    public String getUrl() {
+        return url;
+    }
 
-  public void setUrl(String url) {
-    this.url = url;
-  }
+    public void setUrl(String url) {
+        this.url = url;
+    }
 
-  public String getUsername() {
-    return username;
-  }
+    public String getUsername() {
+        return username;
+    }
 
-  public void setUsername(String username) {
-    this.username = username;
-  }
+    public void setUsername(String username) {
+        this.username = username;
+    }
 
-  public String getPassword() {
-    return password;
-  }
+    public String getPassword() {
+        return password;
+    }
 
-  public void setPassword(String password) {
-    this.password = password;
-  }
+    public void setPassword(String password) {
+        this.password = password;
+    }
 
-  public String getInitialSize() {
-    return initialSize;
-  }
+    public String getInitialSize() {
+        return initialSize;
+    }
 
-  public void setInitialSize(String initialSize) {
-    this.initialSize = initialSize;
-  }
+    public void setInitialSize(String initialSize) {
+        this.initialSize = initialSize;
+    }
 
-  public String getMinIdle() {
-    return minIdle;
-  }
+    public String getMinIdle() {
+        return minIdle;
+    }
 
-  public void setMinIdle(String minIdle) {
-    this.minIdle = minIdle;
-  }
+    public void setMinIdle(String minIdle) {
+        this.minIdle = minIdle;
+    }
 
-  public String getMaxActive() {
-    return maxActive;
-  }
+    public String getMaxActive() {
+        return maxActive;
+    }
 
-  public void setMaxActive(String maxActive) {
-    this.maxActive = maxActive;
-  }
+    public void setMaxActive(String maxActive) {
+        this.maxActive = maxActive;
+    }
 
-  public String getMaxWait() {
-    return maxWait;
-  }
+    public String getMaxWait() {
+        return maxWait;
+    }
 
-  public void setMaxWait(String maxWait) {
-    this.maxWait = maxWait;
-  }
+    public void setMaxWait(String maxWait) {
+        this.maxWait = maxWait;
+    }
 
-  public String getTimeBetweenEvictionRunsMillis() {
-    return timeBetweenEvictionRunsMillis;
-  }
+    public String getTimeBetweenEvictionRunsMillis() {
+        return timeBetweenEvictionRunsMillis;
+    }
 
-  public void setTimeBetweenEvictionRunsMillis(String timeBetweenEvictionRunsMillis) {
-    this.timeBetweenEvictionRunsMillis = timeBetweenEvictionRunsMillis;
-  }
+    public void setTimeBetweenEvictionRunsMillis(String timeBetweenEvictionRunsMillis) {
+        this.timeBetweenEvictionRunsMillis = timeBetweenEvictionRunsMillis;
+    }
 
-  public String getMinEvictableIdleTimeMillis() {
-    return minEvictableIdleTimeMillis;
-  }
+    public String getMinEvictableIdleTimeMillis() {
+        return minEvictableIdleTimeMillis;
+    }
 
-  public void setMinEvictableIdleTimeMillis(String minEvictableIdleTimeMillis) {
-    this.minEvictableIdleTimeMillis = minEvictableIdleTimeMillis;
-  }
+    public void setMinEvictableIdleTimeMillis(String minEvictableIdleTimeMillis) {
+        this.minEvictableIdleTimeMillis = minEvictableIdleTimeMillis;
+    }
 
-  public String getValidationQuery() {
-    return validationQuery;
-  }
+    public String getValidationQuery() {
+        return validationQuery;
+    }
 
-  public void setValidationQuery(String validationQuery) {
-    this.validationQuery = validationQuery;
-  }
+    public void setValidationQuery(String validationQuery) {
+        this.validationQuery = validationQuery;
+    }
 
-  public String getTestWhileIdle() {
-    return testWhileIdle;
-  }
+    public String getTestWhileIdle() {
+        return testWhileIdle;
+    }
 
-  public void setTestWhileIdle(String testWhileIdle) {
-    this.testWhileIdle = testWhileIdle;
-  }
+    public void setTestWhileIdle(String testWhileIdle) {
+        this.testWhileIdle = testWhileIdle;
+    }
 
-  public String getTestOnBorrow() {
-    return testOnBorrow;
-  }
+    public String getTestOnBorrow() {
+        return testOnBorrow;
+    }
 
-  public void setTestOnBorrow(String testOnBorrow) {
-    this.testOnBorrow = testOnBorrow;
-  }
+    public void setTestOnBorrow(String testOnBorrow) {
+        this.testOnBorrow = testOnBorrow;
+    }
 
-  public String getTestOnReturn() {
-    return testOnReturn;
-  }
+    public String getTestOnReturn() {
+        return testOnReturn;
+    }
 
-  public void setTestOnReturn(String testOnReturn) {
-    this.testOnReturn = testOnReturn;
-  }
+    public void setTestOnReturn(String testOnReturn) {
+        this.testOnReturn = testOnReturn;
+    }
 
-  public String getPoolPreparedStatements() {
-    return poolPreparedStatements;
-  }
+    public String getPoolPreparedStatements() {
+        return poolPreparedStatements;
+    }
 
-  public void setPoolPreparedStatements(String poolPreparedStatements) {
-    this.poolPreparedStatements = poolPreparedStatements;
-  }
+    public void setPoolPreparedStatements(String poolPreparedStatements) {
+        this.poolPreparedStatements = poolPreparedStatements;
+    }
 
-  public String getMaxPoolPreparedStatementPerConnectionSize() {
-    return maxPoolPreparedStatementPerConnectionSize;
-  }
+    public String getMaxPoolPreparedStatementPerConnectionSize() {
+        return maxPoolPreparedStatementPerConnectionSize;
+    }
 
-  public void setMaxPoolPreparedStatementPerConnectionSize(
-      String maxPoolPreparedStatementPerConnectionSize) {
-    this.maxPoolPreparedStatementPerConnectionSize = maxPoolPreparedStatementPerConnectionSize;
-  }
+    public void setMaxPoolPreparedStatementPerConnectionSize(
+        String maxPoolPreparedStatementPerConnectionSize) {
+        this.maxPoolPreparedStatementPerConnectionSize = maxPoolPreparedStatementPerConnectionSize;
+    }
 
-  public String getFilters() {
-    return filters;
-  }
+    public String getFilters() {
+        return filters;
+    }
 
-  public void setFilters(String filters) {
-    this.filters = filters;
-  }
+    public void setFilters(String filters) {
+        this.filters = filters;
+    }
 
-  public String getConnectionProperties() {
-    return connectionProperties;
-  }
+    public String getConnectionProperties() {
+        return connectionProperties;
+    }
 
-  public void setConnectionProperties(String connectionProperties) {
-    this.connectionProperties = connectionProperties;
-  }
+    public void setConnectionProperties(String connectionProperties) {
+        this.connectionProperties = connectionProperties;
+    }
 }

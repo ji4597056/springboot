@@ -11,41 +11,42 @@ import com.study.spring.enums.ReqAction;
 @JsonIgnoreProperties(ignoreUnknown = true)
 public class ReqActionModel<T> {
 
-  @JsonProperty(value = "action")
-  private ReqAction action;
+    @JsonProperty(value = "action")
+    private ReqAction action;
 
-  @JsonProperty(value = "body")
-  private T body;
+    @JsonProperty(value = "body")
+    private T body;
 
-  public ReqActionModel() {}
+    public ReqActionModel() {
+    }
 
-  public ReqActionModel(ReqAction action, T body) {
-    this.action = action;
-    this.body = body;
-  }
+    public ReqActionModel(ReqAction action, T body) {
+        this.action = action;
+        this.body = body;
+    }
 
-  public T getBody() {
-    return body;
-  }
+    public T getBody() {
+        return body;
+    }
 
-  public void setBody(T body) {
-    this.body = body;
-  }
+    public void setBody(T body) {
+        this.body = body;
+    }
 
-  public ReqAction getAction() {
-    return action;
-  }
+    public ReqAction getAction() {
+        return action;
+    }
 
-  public void setAction(ReqAction action) {
-    this.action = action;
-  }
+    public void setAction(ReqAction action) {
+        this.action = action;
+    }
 
-  @Override
-  public String toString() {
-    final StringBuilder sb = new StringBuilder("ReqActionModel{");
-    sb.append("action=").append(action);
-    sb.append(", body=").append(body);
-    sb.append('}');
-    return sb.toString();
-  }
+    @Override
+    public String toString() {
+        final StringBuilder sb = new StringBuilder("ReqActionModel{");
+        sb.append("action=").append(action);
+        sb.append(", body=").append(body);
+        sb.append('}');
+        return sb.toString();
+    }
 }

@@ -16,33 +16,33 @@ import org.springframework.security.config.annotation.web.configuration.WebSecur
 @EnableWebSecurity
 public class SecurityConfig extends WebSecurityConfigurerAdapter {
 
-  @Override
-  protected void configure(HttpSecurity http) throws Exception {
-    // 禁用csrf防御
-    http.csrf()
-        .disable()
-        .authorizeRequests()
-        .antMatchers("/admin/**")
-        .hasRole("ADMIN")
-        .anyRequest()
-        .permitAll()
-        .and()
-        .httpBasic()
-        .and()
-        .logout()
-        .deleteCookies("JSESSIONID")
-        .permitAll();
-  }
+    @Override
+    protected void configure(HttpSecurity http) throws Exception {
+        // 禁用csrf防御
+        http.csrf()
+            .disable()
+            .authorizeRequests()
+            .antMatchers("/admin/**")
+            .hasRole("ADMIN")
+            .anyRequest()
+            .permitAll()
+            .and()
+            .httpBasic()
+            .and()
+            .logout()
+            .deleteCookies("JSESSIONID")
+            .permitAll();
+    }
 
-  @Override
-  protected void configure(AuthenticationManagerBuilder auth) throws Exception {
-    auth.inMemoryAuthentication()
-        .withUser("admin")
-        .password("admin")
-        .roles("ADMIN")
-        .and()
-        .withUser("user")
-        .password("user")
-        .roles("USER");
-  }
+    @Override
+    protected void configure(AuthenticationManagerBuilder auth) throws Exception {
+        auth.inMemoryAuthentication()
+            .withUser("admin")
+            .password("admin")
+            .roles("ADMIN")
+            .and()
+            .withUser("user")
+            .password("user")
+            .roles("USER");
+    }
 }

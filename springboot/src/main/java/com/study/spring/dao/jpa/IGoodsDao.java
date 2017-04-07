@@ -9,4 +9,6 @@ import org.springframework.data.jpa.repository.JpaRepository;
  * @since 2017/1/9 15:41
  */
 @JpaEnv
-public interface IGoodsDao extends JpaRepository<Goods, Integer> {}
+public interface IGoodsDao extends JpaRepository<Goods, Integer> {
+
+}
