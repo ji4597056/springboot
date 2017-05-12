@@ -7,10 +7,9 @@ import io.swagger.annotations.ApiOperation;
 import java.io.IOException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
-import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 import retrofit2.Call;
 import retrofit2.Response;
@@ -27,13 +26,13 @@ public class RetrofitController {
     @Autowired
     private RetrofitService retrofitService;
 
-    @RequestMapping(value = "base", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_UTF8_VALUE)
+    @GetMapping("base")
     @ApiOperation(value = "retrofit被转发请求")
     public ResponseEntity base() {
         return ResponseEntity.ok(new Person(1, "测试"));
     }
 
-    @RequestMapping(value = "test", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_UTF8_VALUE)
+    @GetMapping("test")
     @ApiOperation(value = "retrofit转发请求")
     public ResponseEntity test() throws IOException {
         Call<Person> call = retrofitService.getPersion();

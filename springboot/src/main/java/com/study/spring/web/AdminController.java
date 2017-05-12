@@ -1,8 +1,8 @@
 package com.study.spring.web;
 
 import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
 import springfox.documentation.annotations.ApiIgnore;
 
 /**
@@ -19,7 +19,7 @@ public class AdminController {
     /**
      * 跳转到swagger-ui页面,该url不需要被swagger查询到
      */
-    @RequestMapping(value = "api", method = RequestMethod.GET)
+    @GetMapping("api")
     public String redirectSwaggerApi() {
         return "redirect:/swagger-ui.html";
     }

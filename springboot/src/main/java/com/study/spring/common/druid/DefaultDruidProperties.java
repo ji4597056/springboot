@@ -1,6 +1,6 @@
 package com.study.spring.common.druid;
 
-import com.study.spring.common.SysConstant;
+import com.study.spring.common.constant.SysConstant;
 import org.springframework.boot.context.properties.ConfigurationProperties;
 
 /**

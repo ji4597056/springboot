@@ -7,10 +7,12 @@ import io.swagger.annotations.ApiOperation;
 import java.util.List;
 import javax.sql.DataSource;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.DeleteMapping;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
 /**
@@ -28,25 +30,25 @@ public class JpaController {
     @Autowired
     private IGoodsService goodsService;
 
-    @RequestMapping(value = "data_source/class", method = RequestMethod.GET)
+    @GetMapping("data_source/class")
     @ApiOperation(value = "查询DataSource类型")
     public String getDataSourceClass() {
         return dataSource.getClass().toString();
     }
 
-    @RequestMapping(value = "goods", method = RequestMethod.POST)
+    @PostMapping("goods")
     @ApiOperation(value = "增加goods")
     public List<Goods> save(@RequestBody Goods goods) {
         return goodsService.save(goods);
     }
 
-    @RequestMapping(value = "goods/{id}", method = RequestMethod.DELETE)
+    @DeleteMapping("goods/{id}")
     @ApiOperation(value = "根据id删除goods")
     public List<Goods> deleteById(@PathVariable int id) {
         return goodsService.deleteById(id);
     }
 
-    @RequestMapping(value = "goods", method = RequestMethod.GET)
+    @GetMapping("goods")
     @ApiOperation(value = "查询所有goods")
     public List<Goods> findAll() {
         return goodsService.findAll();

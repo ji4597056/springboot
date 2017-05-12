@@ -5,6 +5,9 @@ import com.fasterxml.jackson.annotation.PropertyAccessor;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.study.spring.annotation.profile.RedisEnv;
 import java.lang.reflect.Method;
+import java.util.Arrays;
+import java.util.Map;
+import java.util.concurrent.ConcurrentHashMap;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Value;
@@ -49,11 +52,12 @@ public class RedisConfig extends CachingConfigurerSupport {
             @Override
             public Object generate(Object target, Method method, Object... params) {
                 StringBuilder sb = new StringBuilder();
+                // 规范
+                sb.append("spring-boot:");
                 sb.append(target.getClass().getName());
                 sb.append(method.getName());
-                for (Object obj : params) {
-                    sb.append(obj == null ? "" : obj.toString());
-                }
+                Arrays.asList(params).stream()
+                    .forEach(o -> sb.append(o == null ? "_" : "_" + o.toString()));
                 return sb.toString();
             }
         };
@@ -68,6 +72,10 @@ public class RedisConfig extends CachingConfigurerSupport {
     public CacheManager cacheManager(RedisTemplate redisTemplate) {
         RedisCacheManager crm = new RedisCacheManager(redisTemplate);
         crm.setDefaultExpiration(expireTime); //缓存过期时间（秒）
+        // 自定义配置缓存过期时间
+        Map<String, Long> expires = new ConcurrentHashMap<>(1);
+//        expires.put("personCache", expireTime);
+        crm.setExpires(expires);
         return crm;
     }
 

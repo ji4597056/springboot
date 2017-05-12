@@ -3,7 +3,7 @@ package com.study.spring.config;
 import com.alibaba.druid.support.http.StatViewServlet;
 import com.alibaba.druid.support.http.WebStatFilter;
 import com.study.spring.annotation.profile.DruidEnv;
-import com.study.spring.common.SysConstant;
+import com.study.spring.common.constant.SysConstant;
 import com.study.spring.common.druid.BaseDruidDataSourceFactory;
 import com.study.spring.common.druid.DefaultDruidProperties;
 import javax.sql.DataSource;

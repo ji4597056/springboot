@@ -1,6 +1,5 @@
 package com.study.spring.config;
 
-import com.study.spring.entity.Person;
 import com.study.spring.service.retrofit.RetrofitService;
 import java.util.concurrent.TimeUnit;
 import okhttp3.OkHttpClient;
@@ -12,11 +11,9 @@ import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import retrofit2.Retrofit;
-import retrofit2.Retrofit.Builder;
 import retrofit2.converter.jackson.JacksonConverterFactory;
 
 /**
- *
  * @author Jeffrey
  * @since 2017/04/07 15:08
  */
@@ -62,7 +59,7 @@ public class RetrofitConfig {
 
     @Bean
     public Retrofit retrofit(OkHttpClient client) {
-        return new Builder()
+        return new Retrofit.Builder()
             .addConverterFactory(JacksonConverterFactory.create())
             .baseUrl(baseUrl)
             .client(client)

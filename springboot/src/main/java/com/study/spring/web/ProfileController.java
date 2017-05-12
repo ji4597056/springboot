@@ -7,8 +7,8 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
 /**
@@ -30,25 +30,25 @@ public class ProfileController {
     @Autowired
     private DemoConfig configuation;
 
-    @RequestMapping(value = "name", method = RequestMethod.GET)
+    @GetMapping("name")
     @ApiOperation(value = "查询test.name变量值")
     public String getName() {
         return name;
     }
 
-    @RequestMapping(value = "config", method = RequestMethod.GET)
+    @GetMapping("config")
     @ApiOperation(value = "查询config配置信息")
     public DemoConfig getConfiguation() {
         return configuation;
     }
 
-    @RequestMapping(value = "class/name", method = RequestMethod.GET)
+    @GetMapping("/class/name")
     @ApiOperation(value = "查询Iprofile的实现类名")
     public String getProfileName() {
         return profile.getName();
     }
 
-    @RequestMapping(value = "logger/level", method = RequestMethod.GET)
+    @GetMapping("/logger/level")
     @ApiOperation(value = "查询logger的level")
     public String getLoggerLevel() {
         String level = "";

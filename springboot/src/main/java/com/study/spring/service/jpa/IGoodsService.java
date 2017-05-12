@@ -13,17 +13,11 @@ public interface IGoodsService {
         return null;
     }
 
-    ;
-
     default List<Goods> deleteById(Integer id) {
         return null;
     }
 
-    ;
-
     default List<Goods> findAll() {
         return null;
     }
-
-    ;
 }

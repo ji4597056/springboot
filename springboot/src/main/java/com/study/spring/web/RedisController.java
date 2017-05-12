@@ -6,9 +6,11 @@ import com.study.spring.service.redis.IPersonService;
 import io.swagger.annotations.ApiOperation;
 import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.DeleteMapping;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -24,7 +26,7 @@ public class RedisController {
     @Autowired
     private IPersonService personService;
 
-    @RequestMapping(value = "/person", method = RequestMethod.GET)
+    @GetMapping("/person")
     @ApiOperation(value = "查询所有person信息,支持缓存功能")
     public List<Person> findPersons(
         @RequestParam(required = false, defaultValue = "true") boolean cache) {
@@ -35,13 +37,13 @@ public class RedisController {
         }
     }
 
-    @RequestMapping(value = "/person", method = RequestMethod.POST)
+    @PostMapping("/person")
     @ApiOperation(value = "增加person信息,会刷新缓存")
     public void addPersons(@RequestBody List<Person> persons) {
         personService.addPersons(persons);
     }
 
-    @RequestMapping(value = "/person", method = RequestMethod.DELETE)
+    @DeleteMapping("person")
     @ApiOperation(value = "根据id批量删除person信息,不会刷新缓存")
     public void deletePersonsById(@RequestBody List<Integer> ids) {
         personService.deletePersonsById(ids);

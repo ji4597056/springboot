@@ -1,6 +1,6 @@
 package com.study.spring.config;
 
-import com.study.spring.common.SysConstant;
+import com.study.spring.common.constant.SysConstant;
 import com.study.spring.common.druid.BaseDruidDataSourceFactory;
 import com.study.spring.common.quartz.AutowiringSpringBeanJobFactory;
 import java.io.IOException;

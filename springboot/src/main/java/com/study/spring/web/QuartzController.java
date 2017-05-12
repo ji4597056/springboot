@@ -10,10 +10,12 @@ import java.util.List;
 import org.quartz.SchedulerException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.autoconfigure.condition.ConditionalOnProperty;
+import org.springframework.web.bind.annotation.DeleteMapping;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -30,7 +32,7 @@ public class QuartzController {
     @Autowired
     private IQuartzService quartzService;
 
-    @RequestMapping(value = "jobs", method = RequestMethod.GET)
+    @GetMapping("jobs")
     @ApiOperation(value = "查询所有job")
     public List<ScheduleJob> getAllJobs(@RequestParam(required = false) boolean isRun)
         throws SchedulerException {
@@ -41,7 +43,7 @@ public class QuartzController {
         }
     }
 
-    @RequestMapping(value = "jobs/{job_name}", method = RequestMethod.POST)
+    @PostMapping("/jobs/{job_name}")
     @ApiOperation(value = "根据jobName管理(暂停,重启,运行)job")
     public void manageJob(
         @RequestBody ReqActionModel reqActionModel, @PathVariable("job_name") String jobName)
@@ -56,7 +58,7 @@ public class QuartzController {
         }
     }
 
-    @RequestMapping(value = "jobs/{job_name}", method = RequestMethod.DELETE)
+    @DeleteMapping("/jobs/{job_name}")
     @ApiOperation(value = "根据jobName删除job")
     public void deleteJob(@PathVariable("job_name") String jobName) throws SchedulerException {
         quartzService.deleteJob(jobName);

@@ -1,4 +1,4 @@
-package com.study.spring.common;
+package com.study.spring.common.constant;
 
 /**
  * 系统常量
