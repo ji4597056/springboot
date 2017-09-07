@@ -13,22 +13,22 @@
              </selectKey>
     -->
     <insert id="addPersons" useGeneratedKeys="true" keyProperty="id">
-        INSERT INTO person (name)
+        INSERT INTO student (name)
         VALUES
-        <foreach item="person" collection="list" separator=",">
-            (#{person.name})
+        <foreach item="student" collection="list" separator=",">
+            (#{student.name})
         </foreach>
     </insert>
 
     <delete id="deletePersonByIds">
-        DELETE FROM person
+        DELETE FROM student
         WHERE id IN
         <foreach collection="ids" item="id" separator="," open="(" close=")">
             #{id}
         </foreach>
     </delete>
 
-    <select id="findPersons" resultType="com.study.spring.entity.Person">
-        SELECT * FROM person
+    <select id="findPersons" resultType="com.study.spring.entity.Student">
+        SELECT * FROM student
     </select>
 </mapper>

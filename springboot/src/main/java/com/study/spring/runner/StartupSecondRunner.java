@@ -6,11 +6,13 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.core.annotation.Order;
+import org.springframework.stereotype.Component;
 
 /**
  * @author Jeffrey
  * @since 2017/1/9 15:49
  */
+@Component
 @Order(value = 2)
 public class StartupSecondRunner implements CommandLineRunner {
 

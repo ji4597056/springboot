@@ -30,11 +30,11 @@ import org.springframework.web.servlet.DispatcherServlet;
 @Configuration
 public class WebConfig {
 
-    private final Integer connectTimeout = 2000;
+    private static final Integer connectTimeout = 2000;
 
-    private final Integer readTimeout = 60000;
+    private static final Integer readTimeout = 60000;
 
-    private final Integer writeTimeout = 60000;
+    private static final Integer writeTimeout = 60000;
 
     /**
      * 定义restTemplate

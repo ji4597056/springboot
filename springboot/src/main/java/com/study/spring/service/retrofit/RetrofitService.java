@@ -1,6 +1,6 @@
 package com.study.spring.service.retrofit;
 
-import com.study.spring.entity.Person;
+import com.study.spring.entity.Student;
 import retrofit2.Call;
 import retrofit2.http.GET;
 
@@ -11,5 +11,5 @@ import retrofit2.http.GET;
 public interface RetrofitService {
 
     @GET("/retrofit/base")
-    Call<Person> getPersion();
+    Call<Student> getPersion();
 }

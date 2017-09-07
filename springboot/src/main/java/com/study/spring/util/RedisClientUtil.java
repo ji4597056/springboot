@@ -1,5 +1,6 @@
 package com.study.spring.util;
 
+import com.study.spring.annotation.profile.RedisEnv;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
@@ -18,6 +19,7 @@ import org.springframework.stereotype.Component;
  * @since 2017/3/2 14:19
  */
 @Component
+@RedisEnv
 public class RedisClientUtil {
 
     private static final Logger logger = LoggerFactory.getLogger(RedisClientUtil.class);

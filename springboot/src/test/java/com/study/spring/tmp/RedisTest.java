@@ -1,6 +1,6 @@
 package com.study.spring.tmp;
 
-import com.study.spring.entity.Person;
+import com.study.spring.entity.Student;
 import org.junit.Assert;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -35,9 +35,9 @@ public class RedisTest {
   public void testSaveObject() throws Exception {
     //保存对象
     String key = "test_object_value";
-    Person person = new Person(1, "张三");
-    redisTemplate.opsForValue().set(key, person, 1, TimeUnit.MINUTES);
-    Person personFromRedis = (Person) redisTemplate.opsForValue().get(key);
-    Assert.assertEquals(person, personFromRedis); //不是同一个对象
+    Student student = new Student(1, "张三");
+    redisTemplate.opsForValue().set(key, student, 1, TimeUnit.MINUTES);
+    Student studentFromRedis = (Student) redisTemplate.opsForValue().get(key);
+    Assert.assertEquals(student, studentFromRedis); //不是同一个对象
   }
 }

@@ -1,7 +1,7 @@
 package com.study.spring.web;
 
 import com.study.spring.annotation.profile.RedisEnv;
-import com.study.spring.entity.Person;
+import com.study.spring.entity.Student;
 import com.study.spring.service.redis.IPersonService;
 import io.swagger.annotations.ApiOperation;
 import java.util.List;
@@ -28,9 +28,9 @@ public class RedisController {
 
     @GetMapping("/person")
     @ApiOperation(value = "查询所有person信息,支持缓存功能")
-    public List<Person> findPersons(
+    public List<Student> findPersons(
         @RequestParam(required = false, defaultValue = "true") boolean cache) {
-        if (cache == false) {
+        if (!cache) {
             return personService.findPersonsNoCache();
         } else {
             return personService.findPersonsWithCache();
@@ -39,8 +39,8 @@ public class RedisController {
 
     @PostMapping("/person")
     @ApiOperation(value = "增加person信息,会刷新缓存")
-    public void addPersons(@RequestBody List<Person> persons) {
-        personService.addPersons(persons);
+    public void addPersons(@RequestBody List<Student> students) {
+        personService.addPersons(students);
     }
 
     @DeleteMapping("person")

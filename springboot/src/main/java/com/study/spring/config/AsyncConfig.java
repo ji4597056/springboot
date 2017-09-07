@@ -17,15 +17,15 @@ import org.springframework.scheduling.concurrent.ThreadPoolTaskExecutor;
 @EnableAsync
 public class AsyncConfig {
 
-    private final int corePoolSize = 20;
+    private static final int corePoolSize = 20;
 
-    private final int maxPoolSize = 500;
+    private static final int maxPoolSize = 500;
 
-    private final int queueCapacity = 100;
+    private static final int queueCapacity = 100;
 
-    private final int keepAlive = 300;
+    private static final int keepAlive = 300;
 
-    private final String ThreadNamePrefix = "async-task-";
+    private static final String ThreadNamePrefix = "async-task-";
 
     @Bean
     public Executor logExecutor() {

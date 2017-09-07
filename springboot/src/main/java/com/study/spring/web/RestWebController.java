@@ -1,6 +1,6 @@
 package com.study.spring.web;
 
-import com.study.spring.entity.Person;
+import com.study.spring.entity.Student;
 import io.swagger.annotations.ApiOperation;
 import java.io.IOException;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -26,14 +26,14 @@ public class RestWebController {
     @GetMapping("base")
     @ApiOperation(value = "restTemplate被转发请求")
     public ResponseEntity base() {
-        return ResponseEntity.ok(new Person(1, "测试"));
+        return ResponseEntity.ok(new Student(1, "测试"));
     }
 
     @GetMapping("/test/get")
     @ApiOperation(value = "rest转发请求")
     public ResponseEntity test() throws IOException {
         return restTemplate
-            .getForEntity("http://localhost:8888/rest/base", Person.class, null, null);
+            .getForEntity("http://localhost:8888/rest/base", Student.class, null, null);
     }
 
     @GetMapping("/test/exchange")

@@ -33,7 +33,7 @@ public class GlobalExceptionHandler {
     @ExceptionHandler(Exception.class)
     @ResponseBody
     @ResponseStatus(HttpStatus.INTERNAL_SERVER_ERROR)
-    public String sysErrorHandler(HttpServletRequest req, Exception e) throws Exception {
+    public String sysErrorHandler(HttpServletRequest req, Exception e) {
         printErrorLog(req, e);
         return e.getMessage();
     }
@@ -44,13 +44,10 @@ public class GlobalExceptionHandler {
     @ExceptionHandler(ConstraintViolationException.class)
     @ResponseBody
     @ResponseStatus(HttpStatus.BAD_REQUEST)
-    public String argumentErrorHandler(HttpServletRequest req, ConstraintViolationException e)
-        throws Exception {
+    public String argumentErrorHandler(HttpServletRequest req, ConstraintViolationException e) {
         printErrorLog(req, e);
-        return e.getConstraintViolations().stream().map(
-            ConstraintViolation::getMessage)
-            .collect(
-                Collectors.joining(","));
+        return e.getConstraintViolations().stream().map(ConstraintViolation::getMessage)
+            .collect(Collectors.joining(","));
     }
 
     /**
@@ -59,11 +56,9 @@ public class GlobalExceptionHandler {
     @ExceptionHandler(MethodArgumentNotValidException.class)
     @ResponseBody
     @ResponseStatus(HttpStatus.BAD_REQUEST)
-    public String argumenErrorHandler(HttpServletRequest req, MethodArgumentNotValidException e)
-        throws Exception {
+    public String argumenErrorHandler(HttpServletRequest req, MethodArgumentNotValidException e) {
         printErrorLog(req, e);
-        return e.getBindingResult().getFieldErrors().stream()
-            .map(FieldError::getDefaultMessage)
+        return e.getBindingResult().getFieldErrors().stream().map(FieldError::getDefaultMessage)
             .collect(Collectors.joining(","));
     }
 

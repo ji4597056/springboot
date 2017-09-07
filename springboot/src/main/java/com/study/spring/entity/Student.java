@@ -4,16 +4,16 @@ package com.study.spring.entity;
  * @author Jeffrey
  * @since 2017/1/9 15:47
  */
-public class Person {
+public class Student {
 
     private int id;
 
     private String name;
 
-    public Person() {
+    public Student() {
     }
 
-    public Person(int id, String name) {
+    public Student(int id, String name) {
         this.id = id;
         this.name = name;
     }

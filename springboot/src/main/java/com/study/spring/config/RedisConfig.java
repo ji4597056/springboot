@@ -4,7 +4,6 @@ import com.fasterxml.jackson.annotation.JsonAutoDetect;
 import com.fasterxml.jackson.annotation.PropertyAccessor;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.study.spring.annotation.profile.RedisEnv;
-import java.lang.reflect.Method;
 import java.util.Arrays;
 import java.util.Map;
 import java.util.concurrent.ConcurrentHashMap;
@@ -17,9 +16,11 @@ import org.springframework.cache.annotation.EnableCaching;
 import org.springframework.cache.interceptor.KeyGenerator;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.context.annotation.Primary;
 import org.springframework.data.redis.cache.RedisCacheManager;
 import org.springframework.data.redis.connection.RedisConnectionFactory;
 import org.springframework.data.redis.core.RedisTemplate;
+import org.springframework.data.redis.core.StringRedisTemplate;
 import org.springframework.data.redis.serializer.Jackson2JsonRedisSerializer;
 import org.springframework.data.redis.serializer.StringRedisSerializer;
 import org.springframework.transaction.annotation.EnableTransactionManagement;
@@ -47,19 +48,17 @@ public class RedisConfig extends CachingConfigurerSupport {
      * @return KeyGenerator
      */
     @Bean
+    @Primary
     public KeyGenerator keyGenerator() {
-        return new KeyGenerator() {
-            @Override
-            public Object generate(Object target, Method method, Object... params) {
-                StringBuilder sb = new StringBuilder();
-                // 规范
-                sb.append("spring-boot:");
-                sb.append(target.getClass().getName());
-                sb.append(method.getName());
-                Arrays.asList(params).stream()
-                    .forEach(o -> sb.append(o == null ? "_" : "_" + o.toString()));
-                return sb.toString();
-            }
+        return (target, method, params) -> {
+            StringBuilder sb = new StringBuilder();
+            // 规范
+            sb.append("spring-boot:");
+            sb.append(target.getClass().getSimpleName() + "_");
+            sb.append(method.getName() + "_");
+            Arrays.asList(params).stream()
+                .forEach(o -> sb.append(o == null ? "-" : "-" + o.toString()));
+            return sb.toString();
         };
     }
 
@@ -69,6 +68,7 @@ public class RedisConfig extends CachingConfigurerSupport {
      * @return CacheManager
      */
     @Bean
+    @Primary
     public CacheManager cacheManager(RedisTemplate redisTemplate) {
         RedisCacheManager crm = new RedisCacheManager(redisTemplate);
         crm.setDefaultExpiration(expireTime); //缓存过期时间（秒）
@@ -97,6 +97,20 @@ public class RedisConfig extends CachingConfigurerSupport {
         jackson2JsonRedisSerializer.setObjectMapper(om);
         template.setKeySerializer(new StringRedisSerializer());
         template.setValueSerializer(jackson2JsonRedisSerializer);
+        template.afterPropertiesSet();
+        return template;
+    }
+
+    /**
+     * string RedisTemplate配置
+     *
+     * @param factory RedisConnectionFactory
+     * @return StringRedisTemplate
+     */
+    @Bean("stringRedisTemplate")
+    public RedisTemplate<String, String> stringRedisTemplate(RedisConnectionFactory factory) {
+        RedisTemplate<String, String> template = new StringRedisTemplate();
+        template.setConnectionFactory(factory);
         template.afterPropertiesSet();
         return template;
     }

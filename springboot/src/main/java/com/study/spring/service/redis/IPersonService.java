@@ -1,6 +1,6 @@
 package com.study.spring.service.redis;
 
-import com.study.spring.entity.Person;
+import com.study.spring.entity.Student;
 import java.util.List;
 
 /**
@@ -9,11 +9,11 @@ import java.util.List;
  */
 public interface IPersonService {
 
-    List<Person> findPersonsNoCache();
+    List<Student> findPersonsNoCache();
 
-    List<Person> findPersonsWithCache();
+    List<Student> findPersonsWithCache();
 
-    void addPersons(List<Person> persons);
+    void addPersons(List<Student> students);
 
     void deletePersonsById(List<Integer> ids);
 }

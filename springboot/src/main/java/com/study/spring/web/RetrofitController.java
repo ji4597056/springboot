@@ -1,7 +1,7 @@
 package com.study.spring.web;
 
 import com.study.spring.annotation.profile.RetrofitEnv;
-import com.study.spring.entity.Person;
+import com.study.spring.entity.Student;
 import com.study.spring.service.retrofit.RetrofitService;
 import io.swagger.annotations.ApiOperation;
 import java.io.IOException;
@@ -29,14 +29,14 @@ public class RetrofitController {
     @GetMapping("base")
     @ApiOperation(value = "retrofit被转发请求")
     public ResponseEntity base() {
-        return ResponseEntity.ok(new Person(1, "测试"));
+        return ResponseEntity.ok(new Student(1, "测试"));
     }
 
     @GetMapping("test")
     @ApiOperation(value = "retrofit转发请求")
     public ResponseEntity test() throws IOException {
-        Call<Person> call = retrofitService.getPersion();
-        Response<Person> response = call.execute();
+        Call<Student> call = retrofitService.getPersion();
+        Response<Student> response = call.execute();
         if (response.isSuccessful()) {
             return ResponseEntity.ok(response.body());
         } else {

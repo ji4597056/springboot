@@ -10,4 +10,6 @@ public class SysConstant {
 
     /* druid properties 配置前缀 */
     public static final String DRUID_PREFIX = "spring.datasource.druid";
+    /* rabbit 默认队列名 */
+    public static final String RABBIT_DEFAULT_QUEUE = "rabbit";
 }

@@ -1,7 +1,7 @@
 package com.study.spring.web;
 
 import com.study.spring.Application;
-import com.study.spring.entity.Person;
+import com.study.spring.entity.Student;
 import org.junit.Assert;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -38,22 +38,22 @@ public class DemoControllerTest {
 
   @Test
   public void getPerson() throws Exception {
-    ResponseEntity<Person> entity = restTemplate.getForEntity("/hello/person", Person.class);
-    Person person = entity.getBody();
-    Assert.assertNotNull(person);
+    ResponseEntity<Student> entity = restTemplate.getForEntity("/hello/student", Student.class);
+    Student student = entity.getBody();
+    Assert.assertNotNull(student);
   }
 
   @Test
   public void postPerson() throws Exception {
-    Person postPerson = new Person(1, "张三");
-    Person resultPerson = demoController.postPerson(postPerson);
-    Assert.assertEquals(postPerson, resultPerson);
+    Student postStudent = new Student(1, "张三");
+    Student resultStudent = demoController.postPerson(postStudent);
+    Assert.assertEquals(postStudent, resultStudent);
   }
 
   @Test
   public void getPersons() throws Exception {
-    List<Person> persons = demoController.getPersons();
-    Assert.assertEquals(3, persons.size());
+    List<Student> students = demoController.getPersons();
+    Assert.assertEquals(3, students.size());
   }
 
   @Test

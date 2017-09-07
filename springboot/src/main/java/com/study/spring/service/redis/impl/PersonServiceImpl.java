@@ -2,7 +2,7 @@ package com.study.spring.service.redis.impl;
 
 import com.study.spring.annotation.profile.RedisEnv;
 import com.study.spring.dao.redis.IPersonMapper;
-import com.study.spring.entity.Person;
+import com.study.spring.entity.Student;
 import com.study.spring.service.redis.IPersonService;
 import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -24,20 +24,20 @@ public class PersonServiceImpl implements IPersonService {
     private IPersonMapper personMapper;
 
     @Override
-    public List<Person> findPersonsNoCache() {
+    public List<Student> findPersonsNoCache() {
         return personMapper.findPersons();
     }
 
     @Override
     @Cacheable(value = "personCache", key = "'person'", unless = "#result==null")
-    public List<Person> findPersonsWithCache() {
+    public List<Student> findPersonsWithCache() {
         return personMapper.findPersons();
     }
 
     @Override
-    @CacheEvict(value = "personCache", key = "'person'", condition = "#persons!=null")
-    public void addPersons(List<Person> persons) {
-        personMapper.addPersons(persons);
+    @CacheEvict(value = "personCache", key = "'person'", condition = "#students!=null", beforeInvocation = true)
+    public void addPersons(List<Student> students) {
+        personMapper.addPersons(students);
     }
 
     @Override
