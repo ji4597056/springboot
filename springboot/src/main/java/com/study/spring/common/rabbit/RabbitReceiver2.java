@@ -1,7 +1,6 @@
 package com.study.spring.common.rabbit;
 
 import com.study.spring.annotation.profile.RabbitEnv;
-import com.study.spring.common.constant.SysConstant;
 import com.study.spring.config.RabbitConfig;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -11,21 +10,21 @@ import org.springframework.stereotype.Component;
 
 /**
  * @author Jeffrey
- * @since 2017/05/27 16:37
+ * @since 2017/09/28 11:06
  */
 @Component
 @RabbitListener(queues = RabbitConfig.RABBIT_DEFAULT_QUEUE)
 @RabbitEnv
-public class RabbitReceiver {
+public class RabbitReceiver2 {
 
-    private static final Logger logger = LoggerFactory.getLogger(RabbitReceiver.class);
+    private static final Logger logger = LoggerFactory.getLogger(RabbitReceiver2.class);
 
     private static final StringBuilder buffer = new StringBuilder();
 
     @RabbitHandler
     public void process(String message) {
-        logger.info("(RabbitReceiver-process)Receiver : " + message);
-        buffer.append(message).append("_1_");
+        logger.info("(RabbitReceiver2-process)Receiver : " + message);
+        buffer.append(message).append("_2_");
     }
 
     public String show() {
