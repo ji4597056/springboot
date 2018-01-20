@@ -28,7 +28,7 @@ public class ValidationController {
 
     @GetMapping("id")
     @ApiOperation(value = "验证id区间[1,10]")
-    public Integer validIdBetween(
+    public Integer validIdBetween1(
         @Min(value = 1, message = "id最小值为1") @Max(value = 10, message = "id最大值为10") @RequestParam(required = false) Integer id) {
         return id;
     }

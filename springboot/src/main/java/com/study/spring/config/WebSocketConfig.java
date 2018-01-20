@@ -1,6 +1,7 @@
 package com.study.spring.config;
 
-import com.study.spring.common.websocket.MessageWebSocketHandler;
+import com.study.spring.common.websocket.AbstractForwardHandler;
+import com.study.spring.common.websocket.TestForwardHandler;
 import com.study.spring.common.websocket.MessageWebSocketInterceptor;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -28,14 +29,14 @@ public class WebSocketConfig implements WebSocketConfigurer {
             .withSockJS();
         //without sockjs
         webSocketHandlerRegistry
-            .addHandler(messageWebSocketHandler(), "/websocket/message")
+            .addHandler(messageWebSocketHandler(), "/websocket/*")
             .addInterceptors(messageWebSocketInterceptor())
             .setAllowedOrigins("*");
     }
 
     @Bean
-    public MessageWebSocketHandler messageWebSocketHandler() {
-        return new MessageWebSocketHandler();
+    public AbstractForwardHandler messageWebSocketHandler() {
+        return new TestForwardHandler();
     }
 
     @Bean

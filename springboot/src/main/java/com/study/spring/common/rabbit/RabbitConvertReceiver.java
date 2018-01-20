@@ -8,6 +8,7 @@ import java.util.ArrayList;
 import java.util.List;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.amqp.core.Message;
 import org.springframework.amqp.rabbit.annotation.RabbitHandler;
 import org.springframework.amqp.rabbit.annotation.RabbitListener;
 import org.springframework.stereotype.Component;
@@ -26,9 +27,9 @@ public class RabbitConvertReceiver {
     private List<RabbitMessage> rabbitMessages = new ArrayList<>();
 
     @RabbitHandler
-    public void process(RabbitMessage message) {
+    public void process(Message message) {
         logger.info("(RabbitConvertReceiver-process)Receiver : " + message);
-        rabbitMessages.add(message);
+        rabbitMessages.add(null);
     }
 
     public List<RabbitMessage> show() {

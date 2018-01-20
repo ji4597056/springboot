@@ -3,8 +3,12 @@ package com.study.spring.service.jpa.Impl;
 import com.study.spring.annotation.profile.JpaEnv;
 import com.study.spring.dao.jpa.IGoodsDao;
 import com.study.spring.entity.jpa.Goods;
+import com.study.spring.entity.jpa.OrderResult;
 import com.study.spring.service.jpa.IGoodsService;
+import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
+import javax.persistence.criteria.Predicate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Primary;
 import org.springframework.jdbc.core.JdbcTemplate;
@@ -43,5 +47,15 @@ public class GoodsServiceJpaImpl implements IGoodsService {
     @Override
     public List<Goods> findAll() {
         return goodsDao.findAll();
+    }
+
+    @Override
+    public List<OrderResult> findAllBy(Integer orderId) {
+        return goodsDao.findAll((root, query, builder) -> {
+            List<Predicate> predicates = new ArrayList<>(3);
+            Optional.ofNullable(orderId)
+                .ifPresent(userId -> predicates.add(builder.equal(root.get("id"), orderId)));
+            return builder.and(predicates.toArray(new Predicate[predicates.size()]));
+        });
     }
 }

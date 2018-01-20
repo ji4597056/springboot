@@ -1,6 +1,7 @@
 package com.study.spring.service.jpa;
 
 import com.study.spring.entity.jpa.Goods;
+import com.study.spring.entity.jpa.OrderResult;
 import java.util.List;
 
 /**
@@ -18,6 +19,10 @@ public interface IGoodsService {
     }
 
     default List<Goods> findAll() {
+        return null;
+    }
+
+    default List<OrderResult> findAllBy(Integer id) {
         return null;
     }
 }

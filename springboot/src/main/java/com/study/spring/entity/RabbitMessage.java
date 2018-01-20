@@ -7,7 +7,7 @@ import java.util.Date;
  * @author Jeffrey
  * @since 2017/09/28 13:28
  */
-public class RabbitMessage implements Serializable{
+public class RabbitMessage {
 
     private int id;
 

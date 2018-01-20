@@ -2,6 +2,7 @@ package com.study.spring.web;
 
 import com.study.spring.annotation.profile.JpaEnv;
 import com.study.spring.entity.jpa.Goods;
+import com.study.spring.entity.jpa.OrderResult;
 import com.study.spring.service.jpa.IGoodsService;
 import io.swagger.annotations.ApiOperation;
 import java.util.List;
@@ -13,6 +14,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 /**
@@ -52,5 +54,12 @@ public class JpaController {
     @ApiOperation(value = "查询所有goods")
     public List<Goods> findAll() {
         return goodsService.findAll();
+    }
+
+    @GetMapping("orderResult")
+    @ApiOperation(value = "根据用户id和销量查询订单结果")
+    public List<OrderResult> findAllBy(
+        @RequestParam(value = "order_id", required = false) Integer orderId) {
+        return goodsService.findAllBy(orderId);
     }
 }

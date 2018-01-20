@@ -1,11 +1,16 @@
 package com.study.spring.common.rabbit;
 
+import com.rabbitmq.client.Channel;
 import com.study.spring.annotation.profile.RabbitEnv;
 import com.study.spring.config.RabbitConfig;
+import java.io.IOException;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.amqp.core.Message;
 import org.springframework.amqp.rabbit.annotation.RabbitHandler;
 import org.springframework.amqp.rabbit.annotation.RabbitListener;
+import org.springframework.amqp.support.AmqpHeaders;
+import org.springframework.messaging.handler.annotation.Header;
 import org.springframework.stereotype.Component;
 
 /**
@@ -22,9 +27,16 @@ public class RabbitReceiver2 {
     private static final StringBuilder buffer = new StringBuilder();
 
     @RabbitHandler
-    public void process(String message) {
-        logger.info("(RabbitReceiver2-process)Receiver : " + message);
-        buffer.append(message).append("_2_");
+    public void process(Message message, @Header(AmqpHeaders.DELIVERY_TAG) long tag,
+        Channel channel) {
+        String msg = new String(message.getBody());
+        logger.info("(RabbitReceiver2-process)Receiver : " + msg);
+        buffer.append(msg).append("_2_");
+        try {
+            channel.basicReject(tag, true);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
 
     public String show() {

@@ -6,6 +6,7 @@ import com.study.spring.common.rabbit.RabbitExchangeReceiver1;
 import com.study.spring.common.rabbit.RabbitExchangeReceiver2;
 import com.study.spring.common.rabbit.RabbitReceiver;
 import com.study.spring.common.rabbit.RabbitReceiver2;
+import com.study.spring.common.rabbit.TestMessageReceiver;
 import com.study.spring.config.RabbitConfig;
 import com.study.spring.entity.RabbitMessage;
 import io.swagger.annotations.ApiOperation;
@@ -43,6 +44,9 @@ public class RabbitController {
     private RabbitExchangeReceiver2 rabbitExchangeReceiver2;
 
     @Autowired
+    private TestMessageReceiver testMessageReceiver;
+
+    @Autowired
     private RabbitConvertReceiver rabbitConvertReceiver;
 
     @PostMapping("/send")
@@ -56,6 +60,13 @@ public class RabbitController {
     @ApiOperation(value = "向rabbitmq exchange发送消息")
     public String sendExchangeMessage(@RequestBody String message) {
         rabbitTemplate.convertAndSend(RabbitConfig.RABBIT_FANOUT_EXCHANGE, "", message);
+        return message;
+    }
+
+    @PostMapping("/exchange/test/send")
+    @ApiOperation(value = "向rabbitmq test exchange发送消息")
+    public RabbitMessage sendTestExchangeMessage(@RequestBody RabbitMessage message) {
+        rabbitTemplate.convertAndSend(RabbitConfig.RABBIT_TEST_EXCHANGE, "", message);
         return message;
     }
 
@@ -88,6 +99,12 @@ public class RabbitController {
     @ApiOperation(value = "显示监听rabbitmq的消息(exchange-receiver2)")
     public String showExchangeMessage2() {
         return rabbitExchangeReceiver2.show();
+    }
+
+    @GetMapping("/exchange/showTest")
+    @ApiOperation(value = "显示监听rabbitmq的消息(exchange-receiverTest)")
+    public String showExchangeMessageTest() {
+        return testMessageReceiver.show();
     }
 
     @GetMapping("/convert/show")
